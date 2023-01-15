@@ -1,10 +1,12 @@
 const { Pokemon, Type } = require("../db");
 const { Sequelize } = require("sequelize");
 const axios = require("axios");
+const urlApiPokemon = `https://pokeapi.co/api/v2/pokemon`;
+const urlApiTypes = `https://pokeapi.co/api/v2/type`;
 
 const getApiInfo = async () => {
-  //funcion asincrona
-  const apiUrl = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=60"); //obtengo el array results: [{name + url de los primeros 40}]
+  //funcion asincrona ?limit=2
+  const apiUrl = await axios.get(urlApiPokemon + `?limit=2`); //obtengo el array results: [{name + url de los primeros 40}]
   const pokeUrl = []; // uso este array para poner la url de cada pokemon despues de realizar el foreach
   apiUrl.data.results.forEach((el) => {
     pokeUrl.push(axios.get(el.url).then((resp) => resp.data)); //pusheo el contenido de la url de c/pokemon(obj {name, id, img, etc})
@@ -30,26 +32,103 @@ const getApiInfo = async () => {
     );
   return await apiInfo; //espera a que apiInfo reciba toda la info y cuando termina getApiInfo() devuelve esa const si la ejecutamos
 };
-const getTypeApi = async () => {
-  const apiUrl = await axios.get("https://pokeapi.co/api/v2/type");
-  console.log(apiUrl);
-};
-const createPokemon = async (name, hp, attack, defense, height, weight) => {
-  return await Pokemon.create({ name, hp, attack, defense, height, weight });
+const createPokemon = async (
+  name,
+  hp,
+  attack,
+  defense,
+  height,
+  weight,
+  types
+) => {
+  return await Pokemon.create({
+    name,
+    hp,
+    attack,
+    defense,
+    height,
+    weight,
+    types,
+  });
 };
 const getDbPokemon = async () => {
   const pokemons = await Pokemon.findAll();
   return pokemons;
-}
+};
 const getId = async (id) => {
-  const pokemons = await Pokemon.findByPk(id)
+  const pokemons = await Pokemon.findByPk(id);
   return pokemons;
-}
+};
+const getIdApi = async (id) => {
+  try {
+    const apiUrl = await axios.get(urlApiPokemon + `/` + id);
+    return {
+      id: apiUrl.data.id,
+      name: apiUrl.data.name,
+      type: apiUrl.data.types.map((el) => el.type.name),
+      hp: apiUrl.data.stats[0].base_stat,
+      attack: apiUrl.data.stats[1].base_stat,
+      defense: apiUrl.data.stats[2].base_stat,
+      speed: apiUrl.data.stats[3].base_stat,
+      height: apiUrl.data.height,
+      weight: apiUrl.data.weight,
+    };
+  } catch (error) {
+    return { error: "Pokemon not found" };
+  }
+};
+const getName = async (name) => {
+  const pokemon = await Pokemon.findOne({
+    where: {
+      name,
+    },
+  });
+  return pokemon;
+};
+const getNameApi = async (name) => {
+  try {
+    const apiUrl = await axios.get(urlApiPokemon + `/` + name);
+    return {
+      id: apiUrl.data.id,
+      name: apiUrl.data.name,
+      type: apiUrl.data.types.map((el) => el.type.name),
+      hp: apiUrl.data.stats[0].base_stat,
+      attack: apiUrl.data.stats[1].base_stat,
+      defense: apiUrl.data.stats[2].base_stat,
+      speed: apiUrl.data.stats[3].base_stat,
+      height: apiUrl.data.height,
+      weight: apiUrl.data.weight,
+    };
+  } catch (error) {
+    return { error: "Pokemon not found" };
+  }
+};
+const getTypesApi = async () => {
+  const response = await axios.get(urlApiTypes);
+  const types = response.data.results;
+  const typeNames = [];
+  for (let type of types) {
+    const newType = await Type.create({
+      name: type.name,
+    });
+    typeNames.push(newType);
+  }
+  return typeNames;
+};
+const getPokemons = async () => {
+  const api = await getApiInfo(); // una funcion que espera que se resuelve tanto el obtener la informacio de la api como de la base de datos para devolverlos concatenados
+  const db = await getDbPokemon();
+  return api.concat(db);
+};
 
 module.exports = {
   getApiInfo,
   createPokemon,
-  getTypeApi,
   getDbPokemon,
   getId,
+  getTypesApi,
+  getPokemons,
+  getName,
+  getNameApi,
+  getIdApi,
 };

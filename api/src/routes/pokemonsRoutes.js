@@ -1,36 +1,49 @@
 const { Router } = require("express");
-const { getApiInfo, createPokemon, getDbPokemon,getId } = require("../Controllers/Controllers.js");
+const {
+  createPokemon,
+  getName,
+  getId,
+  getPokemons,
+  getTypesApi,
+  getNameApi,
+  getIdApi,
+} = require("../Controllers/Controllers.js");
 const router = Router();
 
 router.get("/", async (req, res) => {
-    const {name} = req.query;
-
-
-
+  const { name } = req.query;
   try {
-    if(name){
-
-    }else{
-        let pokemonApi = await getDbPokemon();
-        return res.status(200).json(pokemonApi);
+    let pokemon;
+    if (name) {
+      pokemon = await getNameApi(name.toLowerCase());
+      if(pokemon.error){
+        pokemon = await getName(name.toLowerCase());
+      }
+    } else {
+      pokemon = await getPokemons();
     }
+    res.status(200).json(pokemon);
   } catch (error) {
     return res.status(404).json({ error: error.message });
   }
 });
 
-router.get("/:id", async (req,res)=>{
-    const {id} = req.params
-    try {
-        let pokemonId = await getId(id);
-        return res.status(200).json(pokemonId)
-    } catch (error) {
-        return res.status(404).json({ error: error.message });
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    let pokemon
+    pokemon = await getIdApi(id);
+    if(pokemon.error){
+      pokemon = await getId(id)
     }
-})
+    res.status(200).json(pokemon)
+  } catch (error) {
+    return res.status(404).json({ error: error.message });
+  }
+});
 
 router.post("/", async (req, res) => {
-  const { name, hp, attack, defense, height, weight } = req.body;
+  const { name, hp, attack, defense, height, weight, types } = req.body;
   try {
     if (!name) return res.status(404).send("Falta enviar datos obligatorios");
     const newPokemon = await createPokemon(
@@ -39,9 +52,10 @@ router.post("/", async (req, res) => {
       attack,
       defense,
       height,
-      weight
+      weight,
+      types
     );
-    res.status(201).json(newPokemon);
+    res.status(201).json(newPokemon); //`Pokemon created successfully ${newPokemon.name}`
   } catch (error) {
     return res.status(404).json({ error: error.message });
   }
