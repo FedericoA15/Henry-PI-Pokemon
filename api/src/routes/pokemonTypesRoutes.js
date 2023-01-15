@@ -4,21 +4,22 @@ const axios = require("axios");
 
 // const { getTypeApi } = require("../Controllers/Controllers.js");
 const router = Router();
-const getTypeApi = async () => {
-  const apiUrl = await axios.get("https://pokeapi.co/api/v2/type");
-  const types = [];
-  for (let i = 0; i < 20; i++) {
-    types.push(apiUrl.data.results[i].name)
+const getTypesApi = async () => {
+  const response = await axios.get("https://pokeapi.co/api/v2/type");
+  const types = response.data.results;
+  const typeNames = [];
+  for (let type of types) {
+    const newType = await Type.create({
+      name: type.name,
+    });
+    typeNames.push(newType);
   }
- 
-  console.log(types);
-  return await Type.saveStrings(types)
-  
+  return typeNames;
 };
 
 router.get("/", async (req, res) => {
   try {
-    const type = await getTypeApi();
+    const type = await getTypesApi();
       res.status(201).json(type);
   } catch (error) {
     return res.status(404).json({ error: error.message });

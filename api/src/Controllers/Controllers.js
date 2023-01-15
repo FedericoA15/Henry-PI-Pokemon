@@ -37,9 +37,19 @@ const getTypeApi = async () => {
 const createPokemon = async (name, hp, attack, defense, height, weight) => {
   return await Pokemon.create({ name, hp, attack, defense, height, weight });
 };
+const getDbPokemon = async () => {
+  const pokemons = await Pokemon.findAll();
+  return pokemons;
+}
+const getId = async (id) => {
+  const pokemons = await Pokemon.findByPk(id)
+  return pokemons;
+}
 
 module.exports = {
   getApiInfo,
   createPokemon,
   getTypeApi,
+  getDbPokemon,
+  getId,
 };
