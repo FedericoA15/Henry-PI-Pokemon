@@ -32,33 +32,6 @@ const getApiInfo = async () => {
     );
   return await apiInfo; //espera a que apiInfo reciba toda la info y cuando termina getApiInfo() devuelve esa const si la ejecutamos
 };
-const createPokemon = async (
-  name,
-  hp,
-  attack,
-  defense,
-  height,
-  weight,
-  types
-) => {
-  return await Pokemon.create({
-    name,
-    hp,
-    attack,
-    defense,
-    height,
-    weight,
-    types,
-  });
-};
-const getDbPokemon = async () => {
-  const pokemons = await Pokemon.findAll();
-  return pokemons;
-};
-const getId = async (id) => {
-  const pokemons = await Pokemon.findByPk(id);
-  return pokemons;
-};
 const getIdApi = async (id) => {
   try {
     const apiUrl = await axios.get(urlApiPokemon + `/` + id);
@@ -66,6 +39,7 @@ const getIdApi = async (id) => {
       id: apiUrl.data.id,
       name: apiUrl.data.name,
       type: apiUrl.data.types.map((el) => el.type.name),
+      img: apiUrl.data.sprites.other.dream_world.front_default,
       hp: apiUrl.data.stats[0].base_stat,
       attack: apiUrl.data.stats[1].base_stat,
       defense: apiUrl.data.stats[2].base_stat,
@@ -76,14 +50,6 @@ const getIdApi = async (id) => {
   } catch (error) {
     return { error: "Pokemon not found" };
   }
-};
-const getName = async (name) => {
-  const pokemon = await Pokemon.findOne({
-    where: {
-      name,
-    },
-  });
-  return pokemon;
 };
 const getNameApi = async (name) => {
   try {
@@ -115,6 +81,85 @@ const getTypesApi = async () => {
   }
   return typeNames;
 };
+const serchType = async (types) => {
+  const t = await Type.findAll({
+      where: { name: types },
+    });
+    if (!t.length) {
+      t = await getTypesApi();
+    }
+  return t
+}
+// ----------------------------------
+const createPokemon = async (
+  name,
+  hp,
+  attack,
+  defense,
+  height,
+  weight,
+  types
+) => {
+  return await Pokemon.create({
+    name,
+    hp,
+    attack,
+    defense,
+    height,
+    weight,
+    types,
+  });
+};
+const getDbPokemon = async () => {
+  const pokemons = await Pokemon.findAll({
+    include:{
+      attributes: ["name"],
+      model: Type,
+        through: {
+          attributes: [],
+        },
+    }
+  });
+  return pokemons;
+};
+const getId = async (id) => {
+  try {
+    const pokemons = await Pokemon.findOne({
+      where: {
+        id: id
+      },
+      include:{
+        attributes: ["name"],
+        model: Type,
+        through: {
+          attributes: [],
+        }
+      }
+    });
+    return pokemons;
+  } catch (error) {
+    return ({error : "Pokemon not found"});
+  }
+};
+const getName = async (name) => {
+  try {
+    const pokemon = await Pokemon.findOne({
+      where: {
+        name,
+      },
+      include:{
+        attributes: ["name"],
+        model: Type,
+        through: {
+          attributes: [],
+        }
+      }
+    });
+    return pokemon;
+  } catch (error) {
+    return { error: "Pokemon not found" };
+  }
+};
 const getPokemons = async () => {
   const api = await getApiInfo(); // una funcion que espera que se resuelve tanto el obtener la informacio de la api como de la base de datos para devolverlos concatenados
   const db = await getDbPokemon();
@@ -122,6 +167,7 @@ const getPokemons = async () => {
 };
 
 module.exports = {
+  serchType,
   getApiInfo,
   createPokemon,
   getDbPokemon,
