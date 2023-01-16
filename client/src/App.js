@@ -1,9 +1,15 @@
 import './App.css';
+import Home from "../src/components/Home.jsx"
+import {  Route } from "react-router-dom";
+
 
 function App() {
   return (
     <div className="App">
-      <h1>Henry Pokemon</h1>
+        <Route path="/"> 
+          <Home/>
+        </Route>
+
     </div>
   );
 }
