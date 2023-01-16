@@ -8,6 +8,7 @@ const {
   getNameApi,
   getIdApi,
 } = require("../Controllers/Controllers.js");
+const { Pokemon, Type } = require("../db");
 const router = Router();
 
 router.get("/", async (req, res) => {
@@ -17,10 +18,10 @@ router.get("/", async (req, res) => {
     if (name) {
       pokemon = await getNameApi(name.toLowerCase());
       if(pokemon.error){
-        pokemon = await getName(name.toLowerCase());
+         pokemon = await getName(name.toLowerCase());
       }
     } else {
-      pokemon = await getPokemons();
+       pokemon = await getPokemons();
     }
     res.status(200).json(pokemon);
   } catch (error) {
@@ -55,6 +56,15 @@ router.post("/", async (req, res) => {
       weight,
       types
     );
+
+    const foundTypes = await Type.findAll({
+      where: { name: types },
+    });
+    if (!foundTypes.length) {
+      foundTypes = await getTypesApi();
+    }
+    const typeIds = foundTypes.map((type) => type.id);
+    await newPokemon.addTypes(typeIds);
     res.status(201).json(newPokemon); //`Pokemon created successfully ${newPokemon.name}`
   } catch (error) {
     return res.status(404).json({ error: error.message });
