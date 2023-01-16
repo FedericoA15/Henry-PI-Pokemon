@@ -11,6 +11,7 @@ module.exports = (sequelize) => {
     },
     name: {
         type: DataTypes.STRING,
+        unique: true,
     },
   });
 };

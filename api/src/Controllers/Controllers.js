@@ -82,13 +82,13 @@ const getTypesApi = async () => {
   return typeNames;
 };
 const serchType = async (types) => {
-  const t = await Type.findAll({
+  const typ = await Type.findAll({
       where: { name: types },
     });
-    if (!t.length) {
-      t = await getTypesApi();
+    if (!typ.length) {
+      typ = await getTypesApi();
     }
-  return t
+  return typ
 }
 // ----------------------------------
 const createPokemon = async (
