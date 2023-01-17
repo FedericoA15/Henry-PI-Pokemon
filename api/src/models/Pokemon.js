@@ -15,9 +15,20 @@ module.exports = (sequelize) => {
       unique: true,
       validate: {
         len: [1,40]
-      }
+      },
     },
-    hp:{
+    img: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        len: [1,100]
+      },
+    },
+    type: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+    },
+    health:{
       type: DataTypes.INTEGER,
       validate: {
         min: 1,
@@ -38,6 +49,13 @@ module.exports = (sequelize) => {
         max: 255
       }
     },
+    speed: {
+      type: DataTypes.INTEGER,
+      validate: {
+        min: 0,
+        max: 100
+      }
+    },
     height: {
       type: DataTypes.INTEGER,
       validate: {
@@ -54,3 +72,24 @@ module.exports = (sequelize) => {
     },
   });
 };
+
+
+
+
+
+	// {
+	// 	"id": 1,
+	// 	"name": "bulbasaur",
+	// 	"img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
+	// 	"type": [
+	// 		"grass",
+	// 		"poison"
+	// 	],
+	// 	"health": 45,
+	// 	"attack": 49,
+	// 	"defense": 49,
+	// 	"speed": 45,
+	// 	"height": 7,
+	// 	"weight": 69
+	// },
+	

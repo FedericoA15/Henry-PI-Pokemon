@@ -5,7 +5,6 @@ const {
   getName,
   getId,
   getPokemons,
-  getTypesApi,
   getNameApi,
   getIdApi,
 } = require("../Controllers/Controllers.js");
@@ -44,7 +43,7 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { name, hp, attack, defense, height, weight, types } = req.body;
+  const { name, img, type, health, attack, defense, speed, height, weight } = req.body;
   let search = await getNameApi(name.toLowerCase());
   // busqueda en la base de datos
   if (search.error) {
@@ -58,14 +57,16 @@ router.post("/", async (req, res) => {
     if (!name) return res.status(404).send("Falta enviar datos obligatorios");
     const newPokemon = await createPokemon(
       name,
-      hp,
+      img,
+      type,
+      health,
       attack,
       defense,
+      speed,
       height,
-      weight,
-      types
+      weight
     );
-    let foundTypes = await serchType(types);
+    let foundTypes = await serchType(type);
     const typeIds = foundTypes.map((type) => type.id);
     await newPokemon.addTypes(typeIds);
     res.status(201).json(`Pokemon created successfully ${newPokemon.name}`);

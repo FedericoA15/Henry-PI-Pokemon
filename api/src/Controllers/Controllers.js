@@ -83,62 +83,61 @@ const getTypesApi = async () => {
 };
 const serchType = async (types) => {
   const typ = await Type.findAll({
-      where: { name: types },
-    });
-    if (!typ.length) {
-      typ = await getTypesApi();
-    }
-  return typ
-}
+    where: { name: types },
+  });
+  if (!typ.length) {
+    typ = await getTypesApi();
+  }
+  return typ;
+};
 // ----------------------------------
 const createPokemon = async (
   name,
-  hp,
+  img,
+  type,
+  health,
   attack,
   defense,
+  speed,
   height,
-  weight,
-  types
+  weight
 ) => {
   return await Pokemon.create({
     name,
-    hp,
+    img,
+    type,
+    health,
     attack,
     defense,
+    speed,
     height,
     weight,
-    types,
   });
 };
+
+// esto uso para que me muestre los datos de la tabla intermedia, pero ando buscando otro metodo por el momneto
+// {
+//   include: {
+//     attributes: ["name"],
+//     model: Type,
+//     through: {
+//       attributes: [],
+//     },
+//   },}
 const getDbPokemon = async () => {
-  const pokemons = await Pokemon.findAll({
-    include:{
-      attributes: ["name"],
-      model: Type,
-        through: {
-          attributes: [],
-        },
-    }
-  });
+  const pokemons = await Pokemon.findAll(); 
   return pokemons;
 };
 const getId = async (id) => {
   try {
     const pokemons = await Pokemon.findOne({
       where: {
-        id: id
+        id: id,
       },
-      include:{
-        attributes: ["name"],
-        model: Type,
-        through: {
-          attributes: [],
-        }
-      }
     });
     return pokemons;
   } catch (error) {
-    return ({error : "Pokemon not found"});
+    return { error: "Pokemon not found" };
   }
 };
 const getName = async (name) => {
@@ -147,13 +146,6 @@ const getName = async (name) => {
       where: {
         name,
       },
-      include:{
-        attributes: ["name"],
-        model: Type,
-        through: {
-          attributes: [],
-        }
-      }
     });
     return pokemon;
   } catch (error) {
