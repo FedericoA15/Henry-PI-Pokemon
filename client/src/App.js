@@ -7,7 +7,7 @@ function App() {
   const location = useLocation()
   return (
     <div className="App">
-        {location.pathname!=="/" &&<NavBar />}
+        {location.pathname!=="/" &&<NavBar/>}
         <Switch>
         <Route exact path="/">
             <LandingPage/>

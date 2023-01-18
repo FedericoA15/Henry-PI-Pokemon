@@ -10,11 +10,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url("./assets/backgroud.png");
-  background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-  width: 100%;
-	min-height: 100vh;
+  background-attachment: fixed;
 }
 
 code {

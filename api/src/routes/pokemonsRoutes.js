@@ -69,7 +69,7 @@ router.post("/", async (req, res) => {
     let foundTypes = await serchType(type);
     const typeIds = foundTypes.map((type) => type.id);
     await newPokemon.addTypes(typeIds);
-    res.status(201).json(`Pokemon created successfully ${newPokemon.name}`);
+    res.status(201).json(`Pokemon created successfully`);
   } catch (error) {
     return res.status(404).json({ error: error.message });
   }
