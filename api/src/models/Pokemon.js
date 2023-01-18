@@ -19,11 +19,6 @@ module.exports = (sequelize) => {
     },
     img: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        len: [1,100]
-      },
     },
     type: {
       type: DataTypes.ARRAY(DataTypes.STRING),

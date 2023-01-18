@@ -6,7 +6,7 @@ const urlApiTypes = `https://pokeapi.co/api/v2/type`;
 
 const getApiInfo = async () => {
   //funcion asincrona ?limit=2
-  const apiUrl = await axios.get(urlApiPokemon + `?limit=2`); //obtengo el array results: [{name + url de los primeros 40}]
+  const apiUrl = await axios.get(urlApiPokemon + `?limit=11`); //obtengo el array results: [{name + url de los primeros 40}]
   const pokeUrl = []; // uso este array para poner la url de cada pokemon despues de realizar el foreach
   apiUrl.data.results.forEach((el) => {
     pokeUrl.push(axios.get(el.url).then((resp) => resp.data)); //pusheo el contenido de la url de c/pokemon(obj {name, id, img, etc})
@@ -104,7 +104,7 @@ const createPokemon = async (
 ) => {
   return await Pokemon.create({
     name,
-    img,
+    img: img ? img: "https://images.dog.ceo/breeds/otterhound/n02091635_979.jpg",
     type,
     health,
     attack,

@@ -1,0 +1,25 @@
+.main{
+    display: inline;
+    position: relative;
+    background-color:red; 
+    border-radius: 5px;
+    width: 200px;
+    height: 250px;
+    margin: 20px;
+    overflow: hidden;
+}
+.info{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.img{
+    max-width: 50%;
+    max-height: 50%;
+    min-height: 50%;
+    transition: 1s;
+}
+.img:hover{
+    transform: scale(1.2);
+}

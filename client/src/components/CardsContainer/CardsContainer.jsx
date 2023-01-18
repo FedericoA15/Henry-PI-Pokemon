@@ -1,59 +1,13 @@
 import React from "react";
 import Card from "../Card/Card";
+import { useSelector } from "react-redux";
+import style from "./CardsContainer.module.css"
 
 const CardsContainer = () => {
-    const pokemons = [
-        {
-            "id": 1,
-            "name": "bulbasaur",
-            "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-            "type": [
-                "grass",
-                "poison"
-            ],
-            "health": 45,
-            "attack": 49,
-            "defense": 49,
-            "speed": 45,
-            "height": 7,
-            "weight": 69
-        },
-        {
-            "id": 2,
-            "name": "ivysaur",
-            "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/2.svg",
-            "type": [
-                "grass",
-                "poison"
-            ],
-            "health": 60,
-            "attack": 62,
-            "defense": 63,
-            "speed": 60,
-            "height": 10,
-            "weight": 130
-        },
-        {
-            "id": "1604a0a3-4bef-4a6e-a75d-570d26ee7522",
-            "name": "bolas",
-            "img": "fotobolas",
-            "type": [
-                "normal",
-                "dark",
-                "flying"
-            ],
-            "health": 5,
-            "attack": 10,
-            "defense": 45,
-            "speed": 10,
-            "height": 15,
-            "weight": 12,
-            "createdAt": "2023-01-17T04:29:38.093Z",
-            "updatedAt": "2023-01-17T04:29:38.093Z"
-        }
-    ]
+    const pokemons = useSelector(state=>state.pokemons)
+
     return (
-        <div>
+        <div className={style.main}>
             {pokemons.map(pokemon=>{
                 return <Card
                     id={pokemon.id}

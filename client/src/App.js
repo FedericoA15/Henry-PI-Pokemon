@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, useLocation } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 import {Home,LandingPage,Detail,Form} from "./views"
 import NavBar from './components/NavBar/NavBar.jsx';
 
@@ -8,6 +8,7 @@ function App() {
   return (
     <div className="App">
         {location.pathname!=="/" &&<NavBar />}
+        <Switch>
         <Route exact path="/">
             <LandingPage/>
         </Route>
@@ -20,6 +21,7 @@ function App() {
         <Route path="/create">
             <Form/>
         </Route>
+        </Switch>
 
     </div>
   );

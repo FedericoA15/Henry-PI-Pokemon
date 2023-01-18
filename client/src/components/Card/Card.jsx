@@ -1,21 +1,20 @@
 import React from "react";
+import style from "./Card.module.css";
 
 const Card = (props) => {
-    
-    return (
-        <div>
-            <p>id:{props.id}</p>
-            <p>name:{props.name}</p>
-            <p>img:{props.img}</p>
-            <p>type:{props.type}</p>
-            <p>health:{props.health}</p>
-            <p>attack:{props.attack}</p>
-            <p>defense:{props.defense}</p>
-            <p>speed:{props.speed}</p>
-            <p>height:{props.height}</p>
-            <p>weight:{props.weight}</p>
-        </div>
-    )
-
-}
-export default Card
+  return (
+    <div className={style.main}>
+      <div className={style.info}>
+        <p>{props.name}</p>
+        <p>{props.type}</p>
+      </div>
+      <img src={props.img} alt={props.name} className={style.img}></img>
+      <div className={style.info}>
+        <p>hp:{props.health}</p>
+        <p>attack:{props.attack}</p>
+        <p>defense:{props.defense}</p>
+      </div>
+    </div>
+  );
+};
+export default Card;
