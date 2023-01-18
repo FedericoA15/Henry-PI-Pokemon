@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { getPokemons } from '../../Redux/actions';
 import style from "../Home/Home.module.css"
 import CardsContainer from '../../components/CardsContainer/CardsContainer';
+import Search from '../../components/Search/Search';
 
 
 const Home = () => {
@@ -15,10 +16,7 @@ const Home = () => {
 
     return(
         <div className={style.main}>
-            <h1>Estas en Home</h1>
-            <CardsContainer>
-
-            </CardsContainer>
+            <CardsContainer/>
         </div>
     )
 }

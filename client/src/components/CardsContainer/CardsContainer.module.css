@@ -1,5 +1,7 @@
 .main{
-    display: grid;
-    grid-template-columns: auto auto auto auto;
+    display: flex;
     justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: auto;
 }

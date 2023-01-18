@@ -3,6 +3,7 @@ import { GET_POKEMONS, GET_POKEMONID } from "./actions"
 const initialState = {
   pokemons: [],
   pokemon: [],
+  filterByName: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,6 +14,7 @@ const reducer = (state = initialState, action) => {
     case GET_POKEMONID:
         return {...state, pokemon: action.payload}
     
+   
 
      
 
