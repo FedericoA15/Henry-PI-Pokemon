@@ -1,9 +1,9 @@
-import { GET_POKEMONS, GET_POKEMONID, GET_TYPES } from "./actions";
+import { GET_POKEMONS, GET_POKEMONID, GET_TYPES, GET_POKEMON_NAME } from "./actions";
 
 const initialState = {
   types: [],
   pokemons: [],
-  pokemon: [],
+  pokemonDetail: [],
   pokemonFilter: [],
 };
 
@@ -16,9 +16,13 @@ const reducer = (state = initialState, action) => {
         pokemonFilter: action.payload,
       };
     case GET_POKEMONID:
-      return { ...state, pokemon: action.payload };
+      return { ...state, pokemonDetail: action.payload };
     case GET_TYPES:
       return { ...state, types: action.payload };
+    case GET_POKEMON_NAME:
+      return { ...state, pokemonFilter: state.pokemons.filter((e)=> e.name === action.payload)}
+    
+    
      
 
     default:

@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom"
 
 const Detail = () => {
     const dispatch = useDispatch();
-    const pokemon = useSelector((state)=> state.pokemon)
+    const pokemon = useSelector((state)=> state.pokemonDetail)
     const { id } = useParams()
 
     useEffect(()=>{
@@ -15,9 +15,6 @@ const Detail = () => {
 
     return(
         <div>
-            <h1>
-                estas en Detail
-            </h1>
             <div>
                 <p> id: {pokemon.id}</p>
                 <p> name: {pokemon.name}</p>

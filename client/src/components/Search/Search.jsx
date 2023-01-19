@@ -1,22 +1,27 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import style from "./Search.module.css";
+import { getPokemonName, getPokemons } from "../../Redux/actions";
 
 const Search = () => {
   const dispatch = useDispatch()
   const [valor,setValor] = useState("");
 
-  const pepito = (event) =>{
+  const changeHandler = (event) =>{
     setValor(event.target.value)
   }
-  const enter = (event)=>{
+  const submitHandler = (event)=>{
     event.preventDefault()
-
+    dispatch(getPokemonName(valor))
+  }
+  const clickHanlder = () => {
+    dispatch(getPokemons())
   }
 
   return (
-    <form onSubmit={enter}>
-        <input type="" value={valor} onChange={pepito}/>
+    <form onSubmit={submitHandler}>
+        <input type="" value={valor} onChange={changeHandler}/>
+        <button>Subir</button>
+        <button onClick={clickHanlder}>Reset</button>
     </form>
   );
 };

@@ -10,6 +10,7 @@ const CardsContainer = () => {
         <div className={style.main}>
             {pokemons.map(pokemon=>{
                 return <Card
+                    key={pokemon.id}
                     id={pokemon.id}
                     name={pokemon.name}
                     img={pokemon.img}
