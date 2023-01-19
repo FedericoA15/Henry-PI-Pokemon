@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import style from "./CardsContainer.module.css"
 
 const CardsContainer = () => {
-    const pokemons = useSelector(state=>state.pokemons) // este hook nos permite traer el estado directamente desde redux sin tener que hacer un mapStateToProps
+    const pokemons = useSelector(state=>state.pokemonFilter) // este hook nos permite traer el estado directamente desde redux sin tener que hacer un mapStateToProps
 
     return (
         <div className={style.main}>

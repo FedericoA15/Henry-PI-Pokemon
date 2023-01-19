@@ -6,7 +6,7 @@ const urlApiTypes = `https://pokeapi.co/api/v2/type`;
 
 const getApiInfo = async () => {
   //funcion asincrona ?limit=2
-  const apiUrl = await axios.get(urlApiPokemon + `?limit=12`); //obtengo el array results: [{name + url de los primeros 40}]
+  const apiUrl = await axios.get(urlApiPokemon + `?limit=40`); //obtengo el array results: [{name + url de los primeros 40}]
   const pokeUrl = []; // uso este array para poner la url de cada pokemon despues de realizar el foreach
   apiUrl.data.results.forEach((el) => {
     pokeUrl.push(axios.get(el.url).then((resp) => resp.data)); //pusheo el contenido de la url de c/pokemon(obj {name, id, img, etc})
@@ -74,13 +74,30 @@ const getTypesApi = async () => {
   const types = response.data.results;
   const typeNames = [];
   for (let type of types) {
-    const newType = await Type.create({
-      name: type.name,
-    });
-    typeNames.push(newType);
+    let existingType = await Type.findOne({ where: { name: type.name } }); // lo que hago aca es buscar si ya tengo un type con tal nombre lo guardo en vez de crear otro para evitar pisar el id
+    if(existingType){
+      typeNames.push(existingType);
+    } else {
+      const newType = await Type.create({
+        name: type.name,
+      });
+      typeNames.push(newType);
+    }
   }
   return typeNames;
 };
+// const getTypesApi = async () => {
+//   const response = await axios.get(urlApiTypes);
+//   const types = response.data.results;
+//   const typeNames = [];
+//   for (let type of types) {
+//     const newType = await Type.create({
+//       name: type.name,
+//     });
+//     typeNames.push(newType);
+//   }
+//   return typeNames;
+// };
 const serchType = async (types) => {
   const typ = await Type.findAll({
     where: { name: types },

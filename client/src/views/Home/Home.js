@@ -7,16 +7,20 @@ import Search from '../../components/Search/Search';
 
 
 const Home = () => {
+    
 
     const dispatch = useDispatch();
 
     useEffect(()=>{
         dispatch(getPokemons())
     },[])
+    
 
     return(
         <div className={style.main}>
+            <Search />
             <CardsContainer/>
+            
         </div>
     )
 }

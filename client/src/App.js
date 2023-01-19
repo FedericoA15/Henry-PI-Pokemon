@@ -1,28 +1,31 @@
-import './App.css';
+import "./App.css";
 import { Route, Switch, useLocation } from "react-router-dom";
-import {Home,LandingPage,Detail,Form} from "./views"
-import NavBar from './components/NavBar/NavBar.jsx';
+import { Home, LandingPage, Detail, Form } from "./views";
+import NavBar from "./components/NavBar/NavBar.jsx";
+import Types from "./views/Types/Types";
 
 function App() {
-  const location = useLocation()
+  const location = useLocation();
   return (
     <div className="App">
-        {location.pathname!=="/" &&<NavBar/>}
-        <Switch>
+      {location.pathname !== "/" && <NavBar />}
+      <Switch>
         <Route exact path="/">
-            <LandingPage/>
+          <LandingPage />
         </Route>
         <Route path="/home">
-            <Home/>
+          <Home />
         </Route>
         <Route path="/detail/:id">
-            <Detail/>
+          <Detail />
         </Route>
         <Route path="/create">
-            <Form/>
+          <Form />
         </Route>
-        </Switch>
-
+        <Route path="/types">
+          <Types />
+        </Route>
+      </Switch>
     </div>
   );
 }
