@@ -16,6 +16,7 @@ const Detail = () => {
     return(
         <div>
             <div>
+                <img src=''></img>
                 <p> id: {pokemon.id}</p>
                 <p> name: {pokemon.name}</p>
                 <p> type: {pokemon.type}</p>
