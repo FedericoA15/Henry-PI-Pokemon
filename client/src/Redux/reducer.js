@@ -1,4 +1,4 @@
-import { GET_POKEMONS, GET_POKEMONID, GET_TYPES, GET_POKEMON_NAME } from "./actions";
+import { GET_POKEMONS, GET_POKEMONID, GET_TYPES, GET_POKEMON_NAME, FILTER_TYPE } from "./actions";
 
 const initialState = {
   types: [],
@@ -21,6 +21,10 @@ const reducer = (state = initialState, action) => {
       return { ...state, types: action.payload };
     case GET_POKEMON_NAME:
       return { ...state, pokemonFilter: state.pokemons.filter((e)=> e.name === action.payload)}
+    case FILTER_TYPE:
+      return { ...state, pokemonFilter: state.pokemons.filter((e)=>e.type.includes(action.payload))}
+
+      
     
     
      

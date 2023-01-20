@@ -1,1 +1,26 @@
-
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}  
+.boton{
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    border-radius: 100px;
+    width: 100px;
+    height: 100px;
+    transition: 1s;
+    justify-content: center;
+    align-items: center;
+}
+.boton:hover{
+    background-color: rgb(255, 0, 0);
+}
+.unstyle{
+    position: relative;
+    text-decoration: none;
+    color: black;
+    padding-top: 50px;
+    top: 35px;
+}

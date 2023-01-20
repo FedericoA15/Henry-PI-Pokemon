@@ -1,28 +1,58 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { getPokemonName, getPokemons } from "../../Redux/actions";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  filterType,
+  getPokemonName,
+  getPokemons,
+  getTypes,
+} from "../../Redux/actions";
+import style from "./Search.module.css";
 
 const Search = () => {
-  const dispatch = useDispatch()
-  const [valor,setValor] = useState("");
+  const types = useSelector((state) => state.types);
+  const dispatch = useDispatch();
+  const [name, setName] = useState("");
+  const [typess, setType] = useState("");
+  useEffect(() => {
+    dispatch(getTypes());
+  }, []);
 
-  const changeHandler = (event) =>{
-    setValor(event.target.value)
-  }
-  const submitHandler = (event)=>{
-    event.preventDefault()
-    dispatch(getPokemonName(valor))
-  }
+  const changeHandler = (event) => {
+    setName(event.target.value);
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    dispatch(getPokemonName(name));
+  };
+
   const clickHanlder = () => {
-    dispatch(getPokemons())
-  }
+    dispatch(getPokemons());
+  };
+
+  const changeHandler2 = (event) => {
+    setType(event.target.value);
+  };
+
+  const submitHandler2 = (event) => {
+    event.preventDefault();
+    dispatch(filterType(typess));
+  };
 
   return (
-    <form onSubmit={submitHandler}>
-        <input type="" value={valor} onChange={changeHandler}/>
+    <div className={style.container}>
+      <form onSubmit={submitHandler}>
+        <input type="" value={name.toLocaleLowerCase()} onChange={changeHandler} />
         <button>Subir</button>
-        <button onClick={clickHanlder}>Reset</button>
-    </form>
+      </form>
+      <form onSubmit={submitHandler2}>
+        <input value={typess} onChange={changeHandler2}></input>
+        <button>Type</button>
+      </form>
+      <form>
+      <button onClick={clickHanlder}>Reset</button>
+      </form>
+    </div>
   );
 };
 export default Search;

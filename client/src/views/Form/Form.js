@@ -36,7 +36,7 @@ const Form = () => {
         <label>Name</label>
         <input
           type="text"
-          value={form.name}
+          value={form.name.toLocaleLowerCase()}
           onChange={changeHandler}
           name="name"
         ></input>

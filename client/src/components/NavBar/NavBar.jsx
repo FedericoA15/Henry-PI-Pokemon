@@ -14,8 +14,9 @@ const NavBar = () => {
         </div>
       </NavLink>
       <div className={style.contilink}>
-        <NavLink to="/home">HOME</NavLink>
-        <NavLink to="/create">FORM</NavLink>
+        <NavLink className={style.button} to="/home">Home</NavLink>
+        <NavLink className={style.button} to="/create">Create</NavLink>
+        <NavLink className={style.button} to="/types">Types</NavLink>
       </div>
     </div>
   );

@@ -6,8 +6,10 @@ const Landing = () => {
 
     return(
         <div className={style.main}>
-            <h1>Welcome!</h1>
-            <Link to="/home"><button>Go!</button></Link>
+            <img src='https://cdn-icons-png.flaticon.com/512/528/528101.png'></img>
+            <div className={style.boton}>
+                <Link to="/home" className={style.unstyle}>Go!</Link>
+            </div>
         </div>
         
     )
