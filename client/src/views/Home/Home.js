@@ -4,6 +4,7 @@ import { getPokemons } from "../../Redux/actions";
 import style from "../Home/Home.module.css";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import Search from "../../components/Search/Search";
+import SearchType from "../../components/SearchType/SearchType";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const Home = () => {
 
   return (
     <div className={style.main}>
+      <SearchType/>
       <Search />
       <CardsContainer />
     </div>

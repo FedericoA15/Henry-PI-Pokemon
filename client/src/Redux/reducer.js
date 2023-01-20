@@ -1,7 +1,14 @@
-import { GET_POKEMONS, GET_POKEMONID, GET_TYPES, GET_POKEMON_NAME, FILTER_TYPE } from "./actions";
+import {
+  GET_POKEMONS,
+  GET_POKEMONID,
+  GET_TYPES,
+  GET_POKEMON_NAME,
+  FILTER_TYPE,
+  FILTER_TYPE_TWO,
+} from "./actions";
 
 const initialState = {
-  types: [],
+  infoType: [],
   pokemons: [],
   pokemonDetail: [],
   pokemonFilter: [],
@@ -18,17 +25,27 @@ const reducer = (state = initialState, action) => {
     case GET_POKEMONID:
       return { ...state, pokemonDetail: action.payload };
     case GET_TYPES:
-      return { ...state, types: action.payload };
+      return { ...state, infoType: action.payload };
     case GET_POKEMON_NAME:
-      return { ...state, pokemonFilter: state.pokemons.filter((e)=> e.name === action.payload)}
+      return {
+        ...state,
+        pokemonFilter: state.pokemons.filter((e) => e.name === action.payload),
+      };
     case FILTER_TYPE:
-      return { ...state, pokemonFilter: state.pokemons.filter((e)=>e.type.includes(action.payload))}
-
-      
-    
-    
-     
-
+      return {
+        ...state,
+        pokemonFilter: state.pokemons.filter((e) =>
+          e.type.includes(action.payload)
+        ),
+      };
+    case FILTER_TYPE_TWO: {
+      const { firstType, secondType } = action.payload;
+      const filteredPokemons = state.pokemons.filter(
+        (pokemon) =>
+          pokemon.type.includes(firstType) && pokemon.type.includes(secondType)
+      );
+      return { ...state, pokemonFilter: filteredPokemons };
+    }
     default:
       return { ...state };
   }

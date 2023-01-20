@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 const TypesInfo = () => {
-    const types = useSelector(state=>state.types)
+    const types = useSelector(state=>state.infoType)
     console.log(types);
 
     return (

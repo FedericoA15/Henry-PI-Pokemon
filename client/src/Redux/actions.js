@@ -5,6 +5,7 @@ export const GET_POKEMONID = "GET_POKEMONID";
 export const GET_POKEMON_NAME = "GET_POKEMON_NAME"
 export const GET_TYPES = "GET_TYPES"
 export const FILTER_TYPE = "FILTER_TYPE"
+export const FILTER_TYPE_TWO = "FILTER_TYPE_TWO"
  
 export const getPokemons = () => {
     return async function(dispatch) {
@@ -15,7 +16,6 @@ export const getPokemons = () => {
         dispatch( { type: GET_POKEMONS, payload: pokemons} )
     }
 }
-
 export const getPokemonId = (id) => {
     return async function (dispatch) {
         const apiData = await axios.get(
@@ -25,7 +25,6 @@ export const getPokemonId = (id) => {
         dispatch ({ type: GET_POKEMONID, payload: pokemon })
     }
 }
-
 export const getPokemonName = (name) => {
     return async function (dispatch) {
         const apiData = await axios.get(
@@ -36,15 +35,18 @@ export const getPokemonName = (name) => {
         dispatch ({ type: GET_POKEMON_NAME, payload: pokemon })
     }
 }
-
-
 export function filterType(type) {
         return {
             type: FILTER_TYPE,
             payload: type,
         }
 }
-
+export function filterTypeTwo(firstType, secondType) {
+    return {
+        type: FILTER_TYPE_TWO,
+        payload: {firstType, secondType},
+    }
+}
 export const getTypes = () => {
     return async function (dispatch) {
         const apiData = await axios.get(
@@ -54,4 +56,3 @@ export const getTypes = () => {
         dispatch ({ type: GET_TYPES, payload: type })
     }
 }
-
