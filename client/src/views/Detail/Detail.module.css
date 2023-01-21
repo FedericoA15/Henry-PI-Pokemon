@@ -1,0 +1,51 @@
+.mainimage {
+  margin-top: 50px;
+  display: inline-flex;
+  flex-direction: column;
+  width: 500px;
+  height: 355px;
+  background-image: url(../../assets/pokedexv02.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  -webkit-box-shadow: 0px 0px 49px 18px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 49px 18px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 49px 18px rgba(0, 0, 0, 0.75);
+  border-radius: 20px;
+}
+.type {
+  position: relative;
+}
+.nameandtype {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 230px;
+  margin-right: 10px;
+  padding-bottom: 50px;
+  bottom: 125px;
+  left: 140px;
+  margin-left: 105px;
+}
+.image {
+  width: 150px;
+  display: flex;
+  margin-top: 40px;
+  margin-left: 50px;
+  min-width: 150px;
+  height: 150px;
+}
+.conteinattackhp {
+  position: relative;
+  bottom: 150px;
+  left: 100px;
+}
+.info {
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+  position: relative;
+  padding-left: 20%;
+  justify-content: center;
+  align-items: center;
+  bottom: 130px;
+}

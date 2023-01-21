@@ -2,57 +2,79 @@ import axios from "axios";
 
 export const GET_POKEMONS = "GET_POKEMONS";
 export const GET_POKEMONID = "GET_POKEMONID";
-export const GET_POKEMON_NAME = "GET_POKEMON_NAME"
-export const GET_TYPES = "GET_TYPES"
-export const FILTER_TYPE = "FILTER_TYPE"
-export const FILTER_TYPE_TWO = "FILTER_TYPE_TWO"
- 
+export const GET_POKEMON_NAME = "GET_POKEMON_NAME";
+export const GET_TYPES = "GET_TYPES";
+export const FILTER_TYPE = "FILTER_TYPE";
+export const FILTER_TYPE_TWO = "FILTER_TYPE_TWO";
+export const FILTER_DB = "FILTER_DB";
+export const FILTER_API = "FILTER_API";
+export const ORDER_BY_ATTACK = "ORDER_BY_ATTACK";
+export const ORDER_BY_NAME = "ORDER_BY_NAME";
+
 export const getPokemons = () => {
-    return async function(dispatch) {
-        const apiData = await axios.get(
-            "http://localhost:3001/pokemons"
-        );
-        const pokemons = apiData.data;
-        dispatch( { type: GET_POKEMONS, payload: pokemons} )
-    }
-}
+  return async function (dispatch) {
+    const apiData = await axios.get("http://localhost:3001/pokemons");
+    const pokemons = apiData.data;
+    dispatch({ type: GET_POKEMONS, payload: pokemons });
+  };
+};
 export const getPokemonId = (id) => {
-    return async function (dispatch) {
-        const apiData = await axios.get(
-            `http://localhost:3001/pokemons/${id}`
-        )
-        const pokemon = apiData.data;
-        dispatch ({ type: GET_POKEMONID, payload: pokemon })
-    }
-}
+  return async function (dispatch) {
+    const apiData = await axios.get(`http://localhost:3001/pokemons/${id}`);
+    const pokemon = apiData.data;
+    dispatch({ type: GET_POKEMONID, payload: pokemon });
+  };
+};
 export const getPokemonName = (name) => {
-    return async function (dispatch) {
-        const apiData = await axios.get(
-            `http://localhost:3001/pokemons/?name=${name}`
-        )
-        const pokemon = apiData.data.name;
-        console.log(pokemon);
-        dispatch ({ type: GET_POKEMON_NAME, payload: pokemon })
-    }
-}
+  return async function (dispatch) {
+    const apiData = await axios.get(
+      `http://localhost:3001/pokemons/?name=${name}`
+    );
+    const pokemon = apiData.data.name;
+    console.log(pokemon);
+    dispatch({ type: GET_POKEMON_NAME, payload: pokemon });
+  };
+};
 export function filterType(type) {
-        return {
-            type: FILTER_TYPE,
-            payload: type,
-        }
+  return {
+    type: FILTER_TYPE,
+    payload: type,
+  };
 }
 export function filterTypeTwo(firstType, secondType) {
-    return {
-        type: FILTER_TYPE_TWO,
-        payload: {firstType, secondType},
-    }
+  return {
+    type: FILTER_TYPE_TWO,
+    payload: { firstType, secondType },
+  };
 }
+export function filterByApi() {
+  return {
+    type: FILTER_API,
+  };
+}
+//preguntar si es correcto pasar el payload vacio o que no exista directamente
+export function filterByDb() {
+  return {
+    type: FILTER_DB,
+    payload: {},
+  };
+}
+export const sortByAttack = (method) => {
+  return {
+    type: ORDER_BY_ATTACK,
+    payload: method,
+  };
+};
+export const sortByName = (method) => {
+  return {
+    type: ORDER_BY_NAME,
+    payload: method,
+  };
+};
 export const getTypes = () => {
-    return async function (dispatch) {
-        const apiData = await axios.get(
-            `http://localhost:3001/types`
-        )
-        const type = apiData.data;
-        dispatch ({ type: GET_TYPES, payload: type })
-    }
-}
+  return async function (dispatch) {
+    const apiData = await axios.get(`http://localhost:3001/types`);
+    const type = apiData.data;
+    dispatch({ type: GET_TYPES, payload: type });
+  };
+};

@@ -43,7 +43,8 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { name, img, type, health, attack, defense, speed, height, weight } = req.body;
+  const { name, img, type, hp, attack, defense, speed, height, weight } =
+    req.body;
   let search = await getNameApi(name.toLowerCase());
   // busqueda en la base de datos
   if (search.error) {
@@ -59,7 +60,7 @@ router.post("/", async (req, res) => {
       name,
       img,
       type,
-      health,
+      hp,
       attack,
       defense,
       speed,

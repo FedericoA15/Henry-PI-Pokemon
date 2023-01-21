@@ -12,12 +12,12 @@ const Home = () => {
   useEffect(() => {
     dispatch(getPokemons());
   }, []);
-// ya no renderizo cardcontoiner en home sino que pagination se dedica a generar las cartass
+  // ya no renderizo cardcontoiner en home sino que pagination se dedica a generar las cartass
   return (
     <div className={style.main}>
-      <SearchType/>
+      <SearchType />
       <Search />
-      <Pagination/> 
+      <Pagination />
     </div>
   );
 };

@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
     type: {
       type: DataTypes.ARRAY(DataTypes.STRING),
     },
-    health:{
+    hp:{
       type: DataTypes.INTEGER,
       validate: {
         min: 1,

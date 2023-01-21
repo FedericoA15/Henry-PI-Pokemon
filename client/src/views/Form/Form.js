@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-
+// falta validacion por front
 const Form = () => {
   const [form, setForm] = useState({
     name: "",

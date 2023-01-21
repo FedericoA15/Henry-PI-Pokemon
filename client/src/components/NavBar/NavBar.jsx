@@ -14,9 +14,15 @@ const NavBar = () => {
         </div>
       </NavLink>
       <div className={style.contilink}>
-        <NavLink className={style.button} to="/home">Home</NavLink>
-        <NavLink className={style.button} to="/create">Create</NavLink>
-        <NavLink className={style.button} to="/types">Types</NavLink>
+        <NavLink className={style.button} to="/home">
+          Home
+        </NavLink>
+        <NavLink className={style.button} to="/create">
+          Create
+        </NavLink>
+        <NavLink className={style.button} to="/types">
+          Types
+        </NavLink>
       </div>
     </div>
   );

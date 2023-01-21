@@ -5,6 +5,10 @@ import {
   GET_POKEMON_NAME,
   FILTER_TYPE,
   FILTER_TYPE_TWO,
+  FILTER_DB,
+  FILTER_API,
+  ORDER_BY_ATTACK,
+  ORDER_BY_NAME,
 } from "./actions";
 
 const initialState = {
@@ -38,14 +42,72 @@ const reducer = (state = initialState, action) => {
           e.type.includes(action.payload)
         ),
       };
-    case FILTER_TYPE_TWO: {
+    case FILTER_TYPE_TWO:
       const { firstType, secondType } = action.payload;
-      const filteredPokemons = state.pokemons.filter(
+      const filteredPokemonsType = state.pokemons.filter(
         (pokemon) =>
           pokemon.type.includes(firstType) && pokemon.type.includes(secondType)
       );
-      return { ...state, pokemonFilter: filteredPokemons };
-    }
+      return { ...state, pokemonFilter: filteredPokemonsType };
+    case FILTER_DB:
+      return {
+        ...state,
+        pokemonFilter: state.pokemons.filter((p) => p.id.length > 16),
+      };
+    case FILTER_API:
+      return {
+        ...state,
+        pokemonFilter: state.pokemons.filter((p) => p.id.toString().length < 4),
+      };
+    case ORDER_BY_ATTACK:
+      // if (action.payload === "asc") {
+      //   return {
+      //     ...state,
+      //     pokemonFilter: state.pokemons.slice().sort((a, b) => {
+      //       return b.attack - a.attack;
+      //     }),
+      //   };
+      // } else if (action.payload === "desc") {
+      //   return {
+      //     ...state,
+      //     pokemonFilter: state.pokemons.slice().sort((a, b) => {
+      //       return a.attack - b.attack;
+      //     }),
+      //   };
+      // }
+      const orderAttack =
+        action.payload === "asc"
+          ? state.pokemons.slice().sort((a, b) => {
+              return a.attack - b.attack;
+            })
+          : state.pokemons.slice().sort((a, b) => {
+              return b.attack - a.attack;
+            });
+      return {
+        ...state,
+        pokemonFilter: orderAttack,
+      };
+    case ORDER_BY_NAME:
+      const order =
+        action.payload === "asc"
+          ? state.pokemons.slice().sort((a, b) => {
+              let first = a.name.toLowerCase();
+              let second = b.name.toLowerCase();
+              if (first > second) return 1;
+              if (first < second) return -1;
+              return 0;
+            })
+          : state.pokemons.slice().sort((a, b) => {
+              let first = a.name.toLowerCase();
+              let second = b.name.toLowerCase();
+              if (first > second) return -1;
+              if (first < second) return 1;
+              return 0;
+            });
+      return {
+        ...state,
+        pokemonFilter: order,
+      };
     default:
       return { ...state };
   }
