@@ -26,8 +26,8 @@ import shadow from "../../assets/icons/shadow.png";
 const SearchType = () => {
   const types = useSelector((state) => state.infoType);
   const dispatch = useDispatch();
-  const [firstType, setFirstType] = useState("");
-  const [secondType, setSecondType] = useState("");
+  const [firstType, setFirstType] = useState(""); // agua
+  const [secondType, setSecondType] = useState(""); // fuego
 
   const typeIcons = {
     normal: normal,
@@ -60,10 +60,10 @@ const SearchType = () => {
       setFirstType(type); //Si el estado firstType está vacío, significa que es la primera vez que se está seleccionando un tipo, entonces se actualiza el estado firstType con el tipo seleccionado.
     } else if (!secondType) {
       //Si el estado secondType está vacío, significa que ya se ha seleccionado un tipo y se está seleccionando un segundo tipo, entonces se actualiza el estado secondType con el tipo seleccionado.
-      setSecondType(type);
+      setSecondType(type); // agua
     } else {
       setFirstType(secondType); // Si ambos estados firstType y secondType ya tienen un valor, significa que se está seleccionando un tercer tipo, entonces se actualiza el estado firstType con el valor actual del estado secondType y se actualiza el estado secondType con el tipo seleccionado.
-      setSecondType(type);
+      setSecondType(type); // veneno
     }
   };
 

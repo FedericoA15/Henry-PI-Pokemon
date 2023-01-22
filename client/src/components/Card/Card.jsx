@@ -7,7 +7,7 @@ const Card = (props) => {
     <div className={style.main}>
       <div className={style.info}>
         <p>{props.name}</p>
-        <p>{props.type}</p>
+        <p>{props.type +``}</p>
       </div>
       <Link to={`/detail/${props.id}`}>
         <img src={props.img} alt={props.name} className={style.img}></img>

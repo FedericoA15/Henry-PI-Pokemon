@@ -1,0 +1,6 @@
+.main{
+    margin-top: 10%;
+    display: inline-flex;
+    flex-direction: column;
+    background-color: red;
+}

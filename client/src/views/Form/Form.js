@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
+import style from "../Form/Form.module.css";
+
 // falta validacion por front
 const Form = () => {
   const [form, setForm] = useState({
     name: "",
-    image: "",
     type: [],
     health: "",
     attack: "",
@@ -13,13 +14,39 @@ const Form = () => {
     height: "",
     weight: "",
   });
+  const [error, setError] = useState({
+    name: "",
+    type: [],
+    health: "",
+    attack: "",
+    defense: "",
+    speed: "",
+    height: "",
+    weight: "",
+  });
+  function validation(inputs) {
+    if (!inputs.name) error.name = "Error";
+    // if (inputs.type) error.type = "La contraseña es muy corta";
+    // if (inputs.type) error.type = "La contraseña es muy larga";
+    // if (inputs.health) error.health = "Error";
+    // if (inputs.health) error.health = "Error";
+    // if (inputs.attack) error.attack = "Error";
+    // if (inputs.attack) error.attack = "Error";
+    // if (inputs.defense) error.defense = "Error";
+    // if (inputs.defense) error.defense = "Error";
+    // if (inputs.height) error.height = "Error";
+    // if (inputs.height) error.height = "Error";
+    // if (inputs.weight) error.weight = "Error";
+    // if (inputs.weight) error.weight = "Error";
+  }
 
-  const changeHandler = (event) => {
-    const property = event.target.name;
-    let value = event.target.value;
-    if (property === "type") value = value.split(",");
-    setForm({ ...form, [property]: value });
-  };
+const changeHandler = (event) => {
+  const property = event.target.name;
+  let value = event.target.value;
+  if (property === "type") value = value.split(",");
+  setForm({ ...form, [property]: value });
+  setError(validation({...form, [property]: value}));
+};
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -31,7 +58,7 @@ const Form = () => {
   };
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className={style.main}>
       <div>
         <label>Name</label>
         <input
@@ -40,15 +67,7 @@ const Form = () => {
           onChange={changeHandler}
           name="name"
         ></input>
-      </div>
-      <div>
-        <label>Image</label>
-        <input
-          type="text"
-          value={form.image}
-          onChange={changeHandler}
-          name="image"
-        ></input>
+        <p>{error.name}</p>
       </div>
       <div>
         <label>Type</label>
@@ -67,6 +86,7 @@ const Form = () => {
           onChange={changeHandler}
           name="health"
         ></input>
+        <p>{error.health}</p>
       </div>
       <div>
         <label>Attack</label>
@@ -76,7 +96,9 @@ const Form = () => {
           onChange={changeHandler}
           name="attack"
         ></input>
+        <p>{error.attack}</p>
       </div>
+
       <div>
         <label>Defense</label>
         <input
@@ -85,6 +107,7 @@ const Form = () => {
           onChange={changeHandler}
           name="defense"
         ></input>
+        <p>{error.defense}</p>
       </div>
       <div>
         <label>Speed</label>
@@ -94,6 +117,7 @@ const Form = () => {
           onChange={changeHandler}
           name="speed"
         ></input>
+        <p>{error.speed}</p>
       </div>
       <div>
         <label>Height</label>
@@ -103,6 +127,7 @@ const Form = () => {
           onChange={changeHandler}
           name="height"
         ></input>
+        <p>{error.height}</p>
       </div>
       <div>
         <label>Weight</label>
@@ -112,6 +137,7 @@ const Form = () => {
           onChange={changeHandler}
           name="weight"
         ></input>
+        <p>{error.weight}</p>
       </div>
       <button type="submit">Submit</button>
     </form>

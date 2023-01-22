@@ -7,12 +7,22 @@
   height: 250px;
   margin: 20px;
   overflow: hidden;
+  background-image: url(../../assets/CardTemplate.png);
+  border: 5px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-size: 100% 100%;
+  -webkit-box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.75);
 }
 .info {
   display: flex;
   justify-content: space-between;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-top: 2px;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: rgb(1, 161, 161);
 }
 .img {
   max-width: 50%;
