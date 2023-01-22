@@ -78,10 +78,10 @@ const reducer = (state = initialState, action) => {
       const orderAttack =
         action.payload === "asc"
           ? state.pokemons.slice().sort((a, b) => {
-              return a.attack - b.attack;
+              return b.attack - a.attack;
             })
           : state.pokemons.slice().sort((a, b) => {
-              return b.attack - a.attack;
+              return a.attack - b.attack;
             });
       return {
         ...state,
