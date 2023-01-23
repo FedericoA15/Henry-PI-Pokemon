@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true,
       validate: {
-        len: [1,40]
+        len: [1,20]
       },
     },
     img: {
@@ -47,22 +47,22 @@ module.exports = (sequelize) => {
     speed: {
       type: DataTypes.INTEGER,
       validate: {
-        min: 0,
-        max: 100
+        min: 1,
+        max: 255
       }
     },
     height: {
       type: DataTypes.INTEGER,
       validate: {
-        min: 0,
-        max: 100
+        min: 1,
+        max: 1000
       }
     },
     weight: {
       type: DataTypes.INTEGER,
       validate: {
-        min: 0,
-        max: 100
+        min: 1,
+        max: 1000
       }
     },
   });

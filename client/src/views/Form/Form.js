@@ -1,13 +1,14 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { validation } from "./validation.js";
 import style from "../Form/Form.module.css";
 
-// falta validacion por front
 const Form = () => {
   const [form, setForm] = useState({
     name: "",
     type: [],
-    health: "",
+    hp: "",
     attack: "",
     defense: "",
     speed: "",
@@ -16,37 +17,27 @@ const Form = () => {
   });
   const [error, setError] = useState({
     name: "",
-    type: [],
-    health: "",
+    type: "",
+    hp: "",
     attack: "",
     defense: "",
     speed: "",
     height: "",
     weight: "",
   });
-  function validation(inputs) {
-    if (!inputs.name) error.name = "Error";
-    // if (inputs.type) error.type = "La contraseña es muy corta";
-    // if (inputs.type) error.type = "La contraseña es muy larga";
-    // if (inputs.health) error.health = "Error";
-    // if (inputs.health) error.health = "Error";
-    // if (inputs.attack) error.attack = "Error";
-    // if (inputs.attack) error.attack = "Error";
-    // if (inputs.defense) error.defense = "Error";
-    // if (inputs.defense) error.defense = "Error";
-    // if (inputs.height) error.height = "Error";
-    // if (inputs.height) error.height = "Error";
-    // if (inputs.weight) error.weight = "Error";
-    // if (inputs.weight) error.weight = "Error";
-  }
 
-const changeHandler = (event) => {
-  const property = event.target.name;
-  let value = event.target.value;
-  if (property === "type") value = value.split(",");
-  setForm({ ...form, [property]: value });
-  setError(validation({...form, [property]: value}));
-};
+  const type = useSelector((state) => state.infoType);
+
+  const changeHandler = (event) => {
+    const property = event.target.name;
+    let value = event.target.value;
+
+    if (property === "name") value = value.toLocaleLowerCase();
+    if (property === "type") value = value.split(",");
+
+    setError(validation(property,value));
+    setForm({ ...form, [property]: value });
+  };
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -54,23 +45,24 @@ const changeHandler = (event) => {
       .post("http://localhost:3001/pokemons", form)
       .then((res) => alert("El pokemon fue creado correctamente"))
       .catch((err) => alert("Error! Revisa tus datos"));
-    console.log(form);
   };
 
+
+
   return (
-    <form onSubmit={submitHandler} className={style.main}>
+    <form onSubmit={submitHandler} className={style.form}>
       <div>
-        <label>Name</label>
+        <label>Name: </label>
         <input
           type="text"
-          value={form.name.toLocaleLowerCase()}
+          value={form.name}
           onChange={changeHandler}
           name="name"
         ></input>
-        <p>{error.name}</p>
+        {error.name && <p>{error.name}</p>}
       </div>
       <div>
-        <label>Type</label>
+        <label>Type: </label>
         <input
           type="text"
           value={form.type}
@@ -79,65 +71,64 @@ const changeHandler = (event) => {
         ></input>
       </div>
       <div>
-        <label>Health</label>
+        <label>Health: </label>
         <input
-          type="text"
-          value={form.health}
+          type="number"
+          value={form.hp}
           onChange={changeHandler}
-          name="health"
+          name="hp"
         ></input>
-        <p>{error.health}</p>
+        {error.hp && <p>{error.hp}</p>}
       </div>
       <div>
-        <label>Attack</label>
+        <label>Attack: </label>
         <input
           type="number"
           value={form.attack}
           onChange={changeHandler}
           name="attack"
         ></input>
-        <p>{error.attack}</p>
+        {error.attack && <p>{error.attack}</p>}
       </div>
-
       <div>
-        <label>Defense</label>
+        <label>Defense: </label>
         <input
           type="number"
           value={form.defense}
           onChange={changeHandler}
           name="defense"
         ></input>
-        <p>{error.defense}</p>
+        {error.defense && <p>{error.defense}</p>}
       </div>
       <div>
-        <label>Speed</label>
+        <label>Speed: </label>
         <input
           type="number"
           value={form.speed}
           onChange={changeHandler}
           name="speed"
         ></input>
-        <p>{error.speed}</p>
+        {error.speed && <p>{error.speed}</p>}
       </div>
       <div>
-        <label>Height</label>
+        <label>Height: </label>
         <input
           type="number"
           value={form.height}
           onChange={changeHandler}
           name="height"
         ></input>
-        <p>{error.height}</p>
+        {error.height && <p>{error.height}</p>}
       </div>
       <div>
-        <label>Weight</label>
+        <label>Weight: </label>
         <input
           type="number"
           value={form.weight}
           onChange={changeHandler}
           name="weight"
         ></input>
-        <p>{error.weight}</p>
+        {error.weight && <p>{error.weight}</p>}
       </div>
       <button type="submit">Submit</button>
     </form>

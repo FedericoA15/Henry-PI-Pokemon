@@ -1,19 +1,26 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import pokebola from "../../assets/pokebola.png"
+import logo from "../../assets/logoPokemon.png"
+import FilterAndOrder from "../FilterAndOrder/FilterAndOder";
 import style from "./NavBar.module.css";
 const NavBar = () => {
   return (
     <div className={style.container}>
+      <div>
+        <img className={style.logo} src={logo} alt="logo" />
+      </div>
       <NavLink to="/">
         <div className={style.contimg}>
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Pokebola-pokeball-png-0.png/481px-Pokebola-pokeball-png-0.png"
+            src={pokebola}
             alt="pokebola"
             className={style.img}
           />
         </div>
       </NavLink>
       <div className={style.contilink}>
+        <FilterAndOrder/>
         <NavLink className={style.button} to="/home">
           Home
         </NavLink>
