@@ -49,3 +49,8 @@
   align-items: center;
   bottom: 130px;
 }
+.icon{
+  height: 30px;
+  position: relative;
+  top: 15px;
+}

@@ -33,3 +33,7 @@
 .img:hover {
   transform: scale(1.2);
 }
+.icon{
+  padding-top: 20px;
+  height: 20px;
+}

@@ -84,6 +84,7 @@ const SearchType = () => {
             <button
               key={type.id}
               className={style.button}
+              value={type.name}
               onClick={() => handleTypeSelection(type.name)}>
               <img className={style.icon} src={typeIcons[type.name]} />{" "}
               <p>{type.name}</p>

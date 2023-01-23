@@ -28,7 +28,7 @@ const Pagination = () => {
     <div>
       <div className={style.main}>
     {buttonI.map((i) => (
-      <button className={style.button} key={i} value={i} onClick={handleClick}>
+      <button className={`${style.button} ${i == page ? style.selected : ""}`} key={i} value={i} onClick={handleClick}>
         {i}
       </button>
     ))}
