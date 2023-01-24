@@ -18,3 +18,9 @@
   border: none;
   width: auto;
 }
+.selected {
+  border-radius: 50%;
+  -webkit-box-shadow: 10px 10px 42px -6px rgba(255, 255, 255, 1);
+  -moz-box-shadow: 10px 10px 42px -6px rgba(255, 255, 255, 1);
+  box-shadow: 10px 10px 42px -6px rgba(255, 255, 255, 1);
+}

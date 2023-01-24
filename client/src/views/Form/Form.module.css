@@ -6,6 +6,7 @@
     transition: all 0.3s ease-in-out;
     margin-top: 50px;
     display: inline-flex;
+    
     flex-direction: column;
   }
   
@@ -28,7 +29,7 @@
     font-weight: bold;
   }
   
-  .form button {
+  .form .button {
     background-color: #ffb74d;
     color: #fff;
     padding: 10px 20px;
@@ -38,11 +39,11 @@
     transition: all 0.3s ease-in-out;
   }
   
-  .form button:hover {
+  .form .button:hover {
     background-color: #ffa726;
   }
   
-  .form button:active {
+  .form .button:active {
     transform: translateY(2px);
     box-shadow: 1px 1px 5px #b3b3b3;
   }
@@ -52,4 +53,19 @@
     font-size: 12px;
     margin-top: 5px;
   }
-  
+.ico{
+  width: 60px;
+}
+.optiones{
+  background-color: rgb(253, 253, 253);
+  display: inline-flex;
+  margin: 10px;
+  cursor: pointer; 
+}
+.createaCard{
+  justify-content: center;
+  display: inline-flex;
+  width: 200px;
+  height: 200px;
+  background-color: red;
+}

@@ -41,14 +41,17 @@ const createPokemonHandler = async (req,res) => {
     return res.status(404).json({ error: error.message });
   }
 }
-const searchPokemonsHandler = async (req,res) => {
-    const { name } = req.query;
+const searchPokemonsHandler = async (req, res) => {
+  const { name } = req.query;
   try {
     let pokemon;
     if (name) {
       pokemon = await getNameApi(name.toLowerCase());
       if (pokemon.error) {
         pokemon = await getName(name.toLowerCase());
+      }
+      if (!pokemon) {
+        return res.status(404).json({ error: "Pokemon not found" });
       }
     } else {
       pokemon = await getPokemons();
@@ -57,7 +60,8 @@ const searchPokemonsHandler = async (req,res) => {
   } catch (error) {
     return res.status(404).json({ error: error.message });
   }
-}
+};
+
 const searchPokemonIdHandler = async (req,res) => {
     const { id } = req.params;
   try {
