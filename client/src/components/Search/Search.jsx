@@ -16,11 +16,13 @@ const Search = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    dispatch(getPokemonName(name));
+    dispatch(getPokemonName(name.toLocaleLowerCase()));
+    setName("")
   };
 
   const clickHanlder = () => {
     dispatch(getPokemons());
+    setName("")
   };
 
   return (
@@ -30,7 +32,7 @@ const Search = () => {
           name="text"
           placeholder="Type here..."
           type="text"
-          value={name.toLocaleLowerCase()}
+          value={name}
           onChange={changeHandler}
           className={style.input}
         />

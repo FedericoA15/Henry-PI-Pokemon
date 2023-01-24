@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import CardsContainer from "../CardsContainer/CardsContainer";
+import NotFound from "../NotFound/NotFound";
 import style from "./Pagination.module.css";
-
 
 const Pagination = () => {
   const allPokemons = useSelector((state) => state.pokemonFilter);
@@ -26,18 +26,28 @@ const Pagination = () => {
 
   return (
     <div>
-      <div className={style.main}>
-    {buttonI.map((i) => (
-      <button className={`${style.button} ${i == page ? style.selected : ""}`} key={i} value={i} onClick={handleClick}>
-        {i}
-      </button>
-    ))}
-</div>
-      <div>
-        <CardsContainer poke={paginatedPokemon}></CardsContainer>
-      </div>
+      {allPokemons.length === 0 ? (
+        <NotFound></NotFound>
+      ) : (
+        <div>
+          <div className={style.main}>
+            {buttonI.map((i) => (
+              <button
+                className={`${style.button} ${i == page ? style.selected : ""}`}
+                key={i}
+                value={i}
+                onClick={handleClick}
+              >
+                {i}
+              </button>
+            ))}
+          </div>
+          <div>
+            <CardsContainer poke={paginatedPokemon}></CardsContainer>
+          </div>
+        </div>
+      )}
     </div>
   );
-  
 };
 export default Pagination;

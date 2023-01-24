@@ -32,28 +32,28 @@ export const getPokemonName = (name) => {
     );
     const pokemon = apiData.data.name;
     console.log(pokemon);
-    dispatch({ type: GET_POKEMON_NAME, payload: pokemon });
+    dispatch({ type: GET_POKEMON_NAME, payload: pokemon })
   };
 };
-export function filterType(type) {
+export const filterType = (type) => {
   return {
     type: FILTER_TYPE,
     payload: type,
   };
 }
-export function filterTypeTwo(firstType, secondType) {
+export const filterTypeTwo =(firstType, secondType) => {
   return {
     type: FILTER_TYPE_TWO,
     payload: { firstType, secondType },
   };
 }
-export function filterByApi() {
+export const filterByApi =() => {
   return {
     type: FILTER_API,
   };
 }
 //preguntar si es correcto pasar el payload vacio o que no exista directamente
-export function filterByDb() {
+export const filterByDb = () => {
   return {
     type: FILTER_DB,
     payload: {},

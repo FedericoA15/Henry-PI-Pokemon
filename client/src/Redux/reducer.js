@@ -30,11 +30,14 @@ const reducer = (state = initialState, action) => {
       return { ...state, pokemonDetail: action.payload };
     case GET_TYPES:
       return { ...state, infoType: action.payload };
-    case GET_POKEMON_NAME:
-      return {
-        ...state,
-        pokemonFilter: state.pokemons.filter((e) => e.name === action.payload),
-      };
+      case GET_POKEMON_NAME:
+        const filteredPokemon = state.pokemons.filter((e) => e.name === action.payload);
+        console.log(filteredPokemon);
+        return {
+            ...state,
+            pokemonFilter: filteredPokemon.length > 0 ? filteredPokemon : [],
+        };
+    
     case FILTER_TYPE:
       return {
         ...state,

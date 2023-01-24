@@ -75,7 +75,7 @@ const getTypesApi = async () => {
   const typeNames = [];
   for (let type of types) {
     let existingType = await Type.findOne({ where: { name: type.name } }); // lo que hago aca es buscar si ya tengo un type con tal nombre lo guardo en vez de crear otro para evitar pisar el id
-    if(existingType){
+    if (existingType) {
       typeNames.push(existingType);
     } else {
       const newType = await Type.create({
@@ -121,7 +121,7 @@ const createPokemon = async (
 ) => {
   return await Pokemon.create({
     name,
-    img: img ? img: "https://images.dog.ceo/breeds/otterhound/n02091635_979.jpg",
+    img,
     type,
     hp,
     attack,
@@ -131,7 +131,6 @@ const createPokemon = async (
     weight,
   });
 };
-
 // esto uso para que me muestre los datos de la tabla intermedia, pero ando buscando otro metodo por el momneto
 // {
 //   include: {
@@ -142,7 +141,7 @@ const createPokemon = async (
 //     },
 //   },}
 const getDbPokemon = async () => {
-  const pokemons = await Pokemon.findAll(); 
+  const pokemons = await Pokemon.findAll();
   return pokemons;
 };
 const getId = async (id) => {
@@ -164,6 +163,9 @@ const getName = async (name) => {
         name,
       },
     });
+    if (!pokemon) {
+      return { error: "Pokemon not found" };
+    }
     return pokemon;
   } catch (error) {
     return { error: "Pokemon not found" };

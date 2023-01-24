@@ -19,19 +19,23 @@ module.exports = (sequelize) => {
     },
     img: {
       type: DataTypes.STRING,
+      defaultValue: "https://images.dog.ceo/breeds/otterhound/n02091635_979.jpg",
     },
     type: {
       type: DataTypes.ARRAY(DataTypes.STRING),
+      defaultValue: ["normal"],
     },
     hp:{
       type: DataTypes.INTEGER,
+      defaultValue: 10,
       validate: {
         min: 1,
         max: 255
-      }
+      },
     },
     attack: {
       type: DataTypes.INTEGER,
+      defaultValue: 10,
       validate: {
         min: 1,
         max: 255
@@ -39,6 +43,7 @@ module.exports = (sequelize) => {
     },
     defense: {
       type: DataTypes.INTEGER,
+      defaultValue: 10,
       validate: {
         min: 1,
         max: 255
@@ -46,6 +51,7 @@ module.exports = (sequelize) => {
     },
     speed: {
       type: DataTypes.INTEGER,
+      defaultValue: 10,
       validate: {
         min: 1,
         max: 255
@@ -53,6 +59,7 @@ module.exports = (sequelize) => {
     },
     height: {
       type: DataTypes.INTEGER,
+      defaultValue: 10,
       validate: {
         min: 1,
         max: 1000
@@ -60,6 +67,7 @@ module.exports = (sequelize) => {
     },
     weight: {
       type: DataTypes.INTEGER,
+      defaultValue: 10,
       validate: {
         min: 1,
         max: 1000

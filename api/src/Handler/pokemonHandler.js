@@ -1,23 +1,21 @@
 const {
-    serchType,
-    createPokemon,
-    getName,
-    getId,
-    getPokemons,
-    getNameApi,
-    getIdApi,
-  } = require("../Controllers/Controllers.js");
+  serchType,
+  createPokemon,
+  getName,
+  getId,
+  getPokemons,
+  getNameApi,
+  getIdApi,
+} = require("../Controllers/Controllers.js");
 
-const createPokemonHandler = async (req,res) => {
-    const { name, img, type, hp, attack, defense, speed, height, weight } =
+const createPokemonHandler = async (req, res) => {
+  const { name, img, type, hp, attack, defense, speed, height, weight } =
     req.body;
   let search = await getNameApi(name.toLowerCase());
-  // busqueda en la base de datos
   if (search.error) {
-    // no encontrado en la API externa
     search = await getName(name.toLowerCase());
   }
-  if (search) {
+  if (!search.error) {
     return res.status(400).json({ error: "Pokemon name already exists." });
   }
   try {
@@ -40,7 +38,8 @@ const createPokemonHandler = async (req,res) => {
   } catch (error) {
     return res.status(404).json({ error: error.message });
   }
-}
+};
+
 const searchPokemonsHandler = async (req, res) => {
   const { name } = req.query;
   try {
@@ -49,6 +48,9 @@ const searchPokemonsHandler = async (req, res) => {
       pokemon = await getNameApi(name.toLowerCase());
       if (pokemon.error) {
         pokemon = await getName(name.toLowerCase());
+        if (!pokemon) {
+          return res.status(404).json({ error: "Pokemon not found" });
+        }
       }
       if (!pokemon) {
         return res.status(404).json({ error: "Pokemon not found" });
@@ -62,8 +64,8 @@ const searchPokemonsHandler = async (req, res) => {
   }
 };
 
-const searchPokemonIdHandler = async (req,res) => {
-    const { id } = req.params;
+const searchPokemonIdHandler = async (req, res) => {
+  const { id } = req.params;
   try {
     let pokemon;
     pokemon = await getIdApi(id);
@@ -74,11 +76,10 @@ const searchPokemonIdHandler = async (req,res) => {
   } catch (error) {
     return res.status(404).json({ error: error.message });
   }
-}
+};
 
-
-module.exports= {
-    createPokemonHandler,
-    searchPokemonsHandler,
-    searchPokemonIdHandler
-}
+module.exports = {
+  createPokemonHandler,
+  searchPokemonsHandler,
+  searchPokemonIdHandler,
+};
