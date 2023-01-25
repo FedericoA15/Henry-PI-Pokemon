@@ -9,6 +9,7 @@ import {
   FILTER_API,
   ORDER_BY_ATTACK,
   ORDER_BY_NAME,
+  SET_LOADING,
 } from "./actions";
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
   pokemons: [],
   pokemonDetail: [],
   pokemonFilter: [],
+  loading: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -111,6 +113,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         pokemonFilter: order,
       };
+    case SET_LOADING:
+      return{
+        ...state,
+        loading: action.payload
+      }
     default:
       return { ...state };
   }

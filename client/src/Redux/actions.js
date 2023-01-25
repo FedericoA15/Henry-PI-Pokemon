@@ -10,6 +10,7 @@ export const FILTER_DB = "FILTER_DB";
 export const FILTER_API = "FILTER_API";
 export const ORDER_BY_ATTACK = "ORDER_BY_ATTACK";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
+export const SET_LOADING = "SET_LOADING";
 
 export const getPokemons = () => {
   return async function (dispatch) {
@@ -32,7 +33,7 @@ export const getPokemonName = (name) => {
     );
     const pokemon = apiData.data.name;
     console.log(pokemon);
-    dispatch({ type: GET_POKEMON_NAME, payload: pokemon })
+    dispatch({ type: GET_POKEMON_NAME, payload: pokemon });
   };
 };
 export const filterType = (type) => {
@@ -40,25 +41,25 @@ export const filterType = (type) => {
     type: FILTER_TYPE,
     payload: type,
   };
-}
-export const filterTypeTwo =(firstType, secondType) => {
+};
+export const filterTypeTwo = (firstType, secondType) => {
   return {
     type: FILTER_TYPE_TWO,
     payload: { firstType, secondType },
   };
-}
-export const filterByApi =() => {
+};
+export const filterByApi = () => {
   return {
     type: FILTER_API,
   };
-}
+};
 //preguntar si es correcto pasar el payload vacio o que no exista directamente
 export const filterByDb = () => {
   return {
     type: FILTER_DB,
     payload: {},
   };
-}
+};
 export const sortByAttack = (method) => {
   return {
     type: ORDER_BY_ATTACK,
@@ -76,5 +77,12 @@ export const getTypes = () => {
     const apiData = await axios.get(`http://localhost:3001/types`);
     const type = apiData.data;
     dispatch({ type: GET_TYPES, payload: type });
+  };
+};
+
+export const setLoading = (status) => {
+  return {
+    type: SET_LOADING,
+    payload: status,
   };
 };

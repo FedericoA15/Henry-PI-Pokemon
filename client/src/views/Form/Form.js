@@ -27,6 +27,7 @@ import shadow from "../../assets/icons/shadow.png";
 import style from "../Form/Form.module.css";
 import { getTypes } from "../../Redux/actions.js";
 import PokemonCreated from "../../components/PokemonCreated/PokemonCreated.jsx";
+import PokemonError from "../../components/PokemonError/PokemonError.jsx";
 
 const Form = () => {
   const [pokemonCreated, setPokemonCreated] = useState(false);
@@ -57,7 +58,8 @@ const Form = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTypes());
-  }, []);
+  }, []); // toda esta parte es de estados tanto para susbcripsion de estado de redux de los types como el useEffect para poder hacerles render tambien estan todo los estados locales que uso para hacer condicionles de render
+
 
   const handleTypeClick = (e, type) => {
     e.preventDefault();
@@ -72,9 +74,9 @@ const Form = () => {
     let property = event.target.name;
     let value = event.target.value;
 
-    if (property === "name") value = value.toLocaleLowerCase();
+    if (property === "name") value = value.toLocaleLowerCase(); // esta parte la hago asi para que cada vez que la propiedad que venga del form sea "name" la mande en minusculas pare evitar problemas con el backend y base de datos
 
-    setError(validation(property, value));
+    setError(validation(property, value)); // le mando property y value por separado a validation para poder hacer render condicionales  a los errores y asi no se actulicen todo los errores al escribir
     setForm({ ...form, [property]: value });
   };
 
@@ -111,14 +113,17 @@ const Form = () => {
     fairy: fairy,
     unknown: unknown,
     shadow: shadow,
-  };
+  }; // obj que sirve para indicar que imagen tiene que agarrar el type de pokemon
   return (
     <div>
       {pokemonCreated && (
         <PokemonCreated setPokemonCreated={setPokemonCreated} />
       )}
+      {pokemonError && (
+        <PokemonError setPokemonError={setPokemonError}/>
+      )}
       <div
-        className={`${style.types} ${pokemonCreated ? `${style.filter}` : ""}`}
+        className={`${style.types} ${pokemonCreated || pokemonError ? `${style.filter}` : ""}`}
       >
         {types.map((type) => {
           return (
@@ -134,7 +139,7 @@ const Form = () => {
         })}
       </div>
       <form
-        className={`${style.main} ${pokemonCreated ? `${style.filter}` : ""}`}
+        className={`${style.main} ${pokemonCreated || pokemonError ? `${style.filter}` : ""}`}
         onSubmit={submitHandler}
       >
         <div className={style.form}>
@@ -233,7 +238,7 @@ const Form = () => {
             src={
               form.img
                 ? form.img
-                : "https://e00-marca.uecdn.es/assets/multimedia/imagenes/2022/06/01/16540932703790.png"
+                : "https://e00-marca.uecdn.es/assets/multimedia/imagenes/2022/06/01/16540932703790.png" //ternario que indica que si no existe form.img esta sera la imagen default del pokemon
             }
           ></img>
           <div className={style.info}>
@@ -244,9 +249,11 @@ const Form = () => {
             <p>Height: {form.height}</p>
             <p>Weight: {form.weight}</p>
           </div>
-        </div>
+        </div>   
       </form>
     </div>
   );
 };
 export default Form;
+
+//createdcard es un render del pokemon que se va a crear para asi mejorar la experiencia de uso
