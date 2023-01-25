@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemonId } from "../../Redux/actions";
+import { deletedPokemon, getPokemonId } from "../../Redux/actions";
 import { useParams } from "react-router-dom";
 import style from "../Detail/Detail.module.css";
 
@@ -52,6 +52,11 @@ const Detail = () => {
     unknown: unknown,
     shadow: shadow,
   };
+  const handleDelete = () =>{
+    dispatch(deletedPokemon(id))
+    alert("borraste el pokemon perfectamente")
+  }
+
 
   useEffect(() => {
     dispatch(getPokemonId(id));
@@ -85,6 +90,8 @@ const Detail = () => {
           <p> Height: {pokemon.height}</p>
         </div>
       </div>
+      {typeof pokemon.id === 'string' && <button onClick={handleDelete}>Delete</button>}
+      {typeof pokemon.id === 'string' && <button onClick={handleDelete}>Edit</button>}
     </div>
   );
 };
