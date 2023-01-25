@@ -46,6 +46,7 @@ const Form = () => {
   });
   const [error, setError] = useState({
     name: "",
+    img: "",
     type: "",
     hp: "",
     attack: "",
@@ -115,7 +116,7 @@ const Form = () => {
     shadow: shadow,
   }; // obj que sirve para indicar que imagen tiene que agarrar el type de pokemon
   return (
-    <div>
+    <div className={style.animated}>
       {pokemonCreated && (
         <PokemonCreated setPokemonCreated={setPokemonCreated} />
       )}
@@ -161,7 +162,7 @@ const Form = () => {
               onChange={changeHandler}
               name="img"
             ></input>
-            {error.name && <p>{error.name}</p>}
+            {error.img && <p>{error.img}</p>}
           </div>
           <div>
             <label>Health: </label>

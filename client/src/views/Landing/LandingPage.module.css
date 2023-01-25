@@ -24,3 +24,13 @@
   padding-top: 50px;
   top: 35px;
 }
+.blink {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    color: red;
+  }
+}
+

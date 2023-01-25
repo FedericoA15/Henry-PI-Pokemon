@@ -1,4 +1,5 @@
 import style from "./PokemonError.module.css";
+import yletal from "../../assets/yletal.png"
 
 const PokemonError = (props) => {
   const { setPokemonError } = props;
@@ -6,8 +7,11 @@ const PokemonError = (props) => {
   return (
     <div className={`${style.main} ${style.fadein}`}>
       <p>¡Revisa tus datos hay un error!</p>
-      <div>
-        <button onClick={() => setPokemonError(false)}>Cerrar</button>
+      <div className={style.containtbutton}>
+        <button className={style.button} onClick={() => setPokemonError(false)}>X</button>
+      </div>
+      <div className={style.containimg}>
+        <img src={yletal} alt="yletal" />
       </div>
     </div>
   );

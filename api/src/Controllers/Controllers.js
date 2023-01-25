@@ -176,6 +176,30 @@ const getPokemons = async () => {
   const db = await getDbPokemon();
   return api.concat(db);
 };
+const deletePokemon = async (id) => {
+  try {
+    const pokemon = await Pokemon.findByPk(id);
+    if (!pokemon) {
+      throw new Error("Pokemon not found");
+    }
+    await pokemon.destroy();
+    return pokemon;
+  } catch (error) {
+    return { error: "Pokemon not found" };
+  }
+};
+const updatePokemon = async (id, name, img, type, hp, attack, defense, speed, height, weight) => {
+  try {
+    const pokemon = await Pokemon.findByPk(id);
+    if (!pokemon) {
+      throw new Error("Pokemon not found");
+    }
+    await pokemon.update({name, img, type, hp, attack, defense, speed, height, weight});
+    return pokemon;
+  } catch (error) {
+    return { error: "Pokemon not found" };
+  }
+};
 
 module.exports = {
   serchType,
@@ -188,4 +212,6 @@ module.exports = {
   getName,
   getNameApi,
   getIdApi,
+  deletePokemon,
+  updatePokemon,
 };

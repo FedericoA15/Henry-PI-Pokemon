@@ -7,8 +7,8 @@ const Landing = () => {
   return (
     <div className={style.main}>
       <img className={style.image} src={landing}></img>
-      <div className={style.boton}>
-        <Link to="/home" className={style.unstyle}>
+      <div className={`${style.boton}`}>
+        <Link to="/home" className={`${style.unstyle} ${style.blink}`}>
           Go!
         </Link>
       </div>

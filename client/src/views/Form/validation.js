@@ -3,7 +3,12 @@ export const validation = (property, value) => {
   if (property === "name" && !value) {
     error.name = "Debes ingresar un nombre";
   } else if (property === "name") {
-    error.name = "";
+    const nameValidation = /^[a-zA-Z\s]*$/;
+    if (!nameValidation.test(value)) {
+      error.name = "El nombre solo debe contener letras";
+    } else {
+      error.name = "";
+    }
   }
   if (property === "hp" && (value <= 0 || value > 255)) {
     error.hp = "La vida debe ser mayor a 0 y menor o igual a 255";
@@ -34,6 +39,16 @@ export const validation = (property, value) => {
     error.weight = "El peso debe ser mayor a 0 y menor o igual a 1000";
   } else if (property === "weight") {
     error.weight = "";
+  }
+  if (property === "img" && !value) {
+    error.img = "Debes ingresar una URL de imagen";
+  } else if (property === "img") {
+    const imgValidation = /^(http|https):\/\/.+/;
+    if (!imgValidation.test(value)) {
+      error.img = "La URL debe comenzar con http o https";
+    } else {
+      error.img = "";
+    }
   }
   return error;
 };

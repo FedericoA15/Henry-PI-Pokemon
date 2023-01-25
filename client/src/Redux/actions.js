@@ -10,7 +10,7 @@ export const FILTER_DB = "FILTER_DB";
 export const FILTER_API = "FILTER_API";
 export const ORDER_BY_ATTACK = "ORDER_BY_ATTACK";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
-export const SET_LOADING = "SET_LOADING";
+export const DELETE_POKEMON = "DELETE_POKEMON";
 
 export const getPokemons = () => {
   return async function (dispatch) {
@@ -36,6 +36,15 @@ export const getPokemonName = (name) => {
     dispatch({ type: GET_POKEMON_NAME, payload: pokemon });
   };
 };
+export const getTypes = () => {
+  return async function (dispatch) {
+    const apiData = await axios.get(`http://localhost:3001/types`);
+    const type = apiData.data;
+    dispatch({ type: GET_TYPES, payload: type });
+  };
+};
+
+
 export const filterType = (type) => {
   return {
     type: FILTER_TYPE,
@@ -72,17 +81,13 @@ export const sortByName = (method) => {
     payload: method,
   };
 };
-export const getTypes = () => {
+export const deletedPokemon = (id) => {
   return async function (dispatch) {
-    const apiData = await axios.get(`http://localhost:3001/types`);
-    const type = apiData.data;
-    dispatch({ type: GET_TYPES, payload: type });
+    const apiData = await axios.delete(`http://localhost:3001/pokemons/${id}`);
+    const pokemon = apiData.data;
+    dispatch({ type: DELETE_POKEMON, payload: pokemon });
   };
-};
+}
 
-export const setLoading = (status) => {
-  return {
-    type: SET_LOADING,
-    payload: status,
-  };
-};
+
+

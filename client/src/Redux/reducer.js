@@ -9,7 +9,7 @@ import {
   FILTER_API,
   ORDER_BY_ATTACK,
   ORDER_BY_NAME,
-  SET_LOADING,
+  DELETE_POKEMON,
 } from "./actions";
 
 const initialState = {
@@ -17,7 +17,6 @@ const initialState = {
   pokemons: [],
   pokemonDetail: [],
   pokemonFilter: [],
-  loading: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -32,14 +31,16 @@ const reducer = (state = initialState, action) => {
       return { ...state, pokemonDetail: action.payload };
     case GET_TYPES:
       return { ...state, infoType: action.payload };
-      case GET_POKEMON_NAME:
-        const filteredPokemon = state.pokemons.filter((e) => e.name === action.payload);
-        console.log(filteredPokemon);
-        return {
-            ...state,
-            pokemonFilter: filteredPokemon.length > 0 ? filteredPokemon : [],
-        };
-    
+    case GET_POKEMON_NAME:
+      const filteredPokemon = state.pokemons.filter(
+        (e) => e.name === action.payload
+      );
+      console.log(filteredPokemon);
+      return {
+        ...state,
+        pokemonFilter: filteredPokemon.length > 0 ? filteredPokemon : [],
+      };
+
     case FILTER_TYPE:
       return {
         ...state,
@@ -113,11 +114,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         pokemonFilter: order,
       };
-    case SET_LOADING:
-      return{
+    case DELETE_POKEMON:
+      return {
         ...state,
-        loading: action.payload
-      }
+        pokemons: action.payload,
+        pokemonFilter: action.payload,
+      };
     default:
       return { ...state };
   }
