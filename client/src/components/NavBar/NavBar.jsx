@@ -21,6 +21,7 @@ const NavBar = () => {
       </NavLink>
       <div className={style.contilink}>
         <FilterAndOrder/>
+        <div className={style.navlink}>
         <NavLink className={style.button} to="/home">
           Home
         </NavLink>
@@ -30,6 +31,7 @@ const NavBar = () => {
         <NavLink className={style.button} to="/types">
           Types
         </NavLink>
+        </div>
       </div>
     </div>
   );

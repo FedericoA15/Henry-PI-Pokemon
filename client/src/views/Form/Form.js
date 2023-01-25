@@ -26,8 +26,11 @@ import shadow from "../../assets/icons/shadow.png";
 
 import style from "../Form/Form.module.css";
 import { getTypes } from "../../Redux/actions.js";
+import PokemonCreated from "../../components/PokemonCreated/PokemonCreated.jsx";
 
 const Form = () => {
+  const [pokemonCreated, setPokemonCreated] = useState(false);
+  const [pokemonError, setPokemonError] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [form, setForm] = useState({
     name: "",
@@ -50,7 +53,6 @@ const Form = () => {
     height: "",
     weight: "",
   });
-
   const types = useSelector((state) => state.infoType);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -67,7 +69,7 @@ const Form = () => {
     }
   };
   const changeHandler = (event) => {
-    const property = event.target.name;
+    let property = event.target.name;
     let value = event.target.value;
 
     if (property === "name") value = value.toLocaleLowerCase();
@@ -80,19 +82,12 @@ const Form = () => {
     event.preventDefault();
     axios
       .post("http://localhost:3001/pokemons", form)
-      .then((res) => alert("El pokemon fue creado correctamente"))
-      .catch((err) => alert("Error! Revisa tus datos"));
-    setForm({
-      name: "",
-      img: "",
-      type: [],
-      hp: "",
-      attack: "",
-      defense: "",
-      speed: "",
-      height: "",
-      weight: "",
-    });
+      .then((res) => {
+        setPokemonCreated(true);
+      })
+      .catch((err) => {
+        setPokemonError(true);
+      });
   };
 
   const typeIcons = {
@@ -117,10 +112,31 @@ const Form = () => {
     unknown: unknown,
     shadow: shadow,
   };
-
   return (
     <div>
-      <form className={style.main} onSubmit={submitHandler}>
+      {pokemonCreated && (
+        <PokemonCreated setPokemonCreated={setPokemonCreated} />
+      )}
+      <div
+        className={`${style.types} ${pokemonCreated ? `${style.filter}` : ""}`}
+      >
+        {types.map((type) => {
+          return (
+            <button
+              onClick={(e) => handleTypeClick(e, type.name)}
+              key={type.id}
+              className={style.optiones}
+              value={type.name}
+            >
+              <img className={style.ico} src={typeIcons[type.name]} />
+            </button>
+          );
+        })}
+      </div>
+      <form
+        className={`${style.main} ${pokemonCreated ? `${style.filter}` : ""}`}
+        onSubmit={submitHandler}
+      >
         <div className={style.form}>
           <div>
             <label>Name: </label>
@@ -206,32 +222,30 @@ const Form = () => {
             Submit
           </button>
         </div>
-        <div className={style.createaCard}>
+        <div className={style.createcard}>
           <p>Name: {form.name}</p>
-          <img className={style.img} src={form.img ? "https://e00-marca.uecdn.es/assets/multimedia/imagenes/2022/06/01/16540932703790.png": form.img }></img>
-          <p>Type: {form.type}</p>
-          <p>Health: {form.hp}</p>
-          <p>Attack: {form.attack}</p>
-          <p>Defense: {form.defense}</p>
-          <p>Speed: {form.speed}</p>
-          <p>Height: {form.height}</p>
-          <p>Weight: {form.weight}</p>
+          <div>
+            <img className={style.icocard} src={typeIcons[form.type[0]]} />
+            <img className={style.icocard} src={typeIcons[form.type[1]]} />
+          </div>
+          <img
+            className={style.img}
+            src={
+              form.img
+                ? form.img
+                : "https://e00-marca.uecdn.es/assets/multimedia/imagenes/2022/06/01/16540932703790.png"
+            }
+          ></img>
+          <div className={style.info}>
+            <p>Health: {form.hp}</p>
+            <p>Attack: {form.attack}</p>
+            <p>Defense: {form.defense}</p>
+            <p>Speed: {form.speed}</p>
+            <p>Height: {form.height}</p>
+            <p>Weight: {form.weight}</p>
+          </div>
         </div>
       </form>
-      <div>
-        {types.map((type) => {
-          return (
-            <button
-              onClick={(e) => handleTypeClick(e, type.name)}
-              key={type.id}
-              className={style.optiones}
-              value={type.name}
-            >
-              <img className={style.ico} src={typeIcons[type.name]} />
-            </button>
-          );
-        })}
-      </div>
     </div>
   );
 };

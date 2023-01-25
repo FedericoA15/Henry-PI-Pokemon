@@ -1,0 +1,23 @@
+.main {
+  font-size: 66px;
+  background-color: red;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 50%;
+  right: 25%;
+  top: 50%;
+  transition: 5s;
+  animation: fadeIn 0.5s ease-in;
+  z-index: 100;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
