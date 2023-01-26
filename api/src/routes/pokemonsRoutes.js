@@ -17,7 +17,7 @@ router.get("/:id", searchPokemonIdHandler);
 
 router.post("/", validate, createPokemonHandler);
 
-router.put("/:id", validate, updatePokemonDb);
+router.put("/:id", updatePokemonDb);
 
 router.delete("/:id", deletePokemonHandlerDb);
 

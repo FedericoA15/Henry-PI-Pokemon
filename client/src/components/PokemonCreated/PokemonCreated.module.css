@@ -1,5 +1,5 @@
 .main {
-  font-size: 50px;
+  font-size: 4.5vw;
   background-color: #ccaf42;
   display: flex;
   position: absolute;
@@ -10,57 +10,43 @@
   transition: 5s;
   animation: fadeIn 0.5s ease-in;
   z-index: 100;
-  -webkit-box-shadow: inset 0px 0px 65px -1px rgba(0,0,0,0.75);
--moz-box-shadow: inset 0px 0px 65px -1px rgba(0,0,0,0.75);
-box-shadow: inset 0px 0px 65px -1px rgba(0,0,0,0.75);
+  -webkit-box-shadow: inset 0px 0px 65px -1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset 0px 0px 65px -1px rgba(0, 0, 0, 0.75);
+  box-shadow: inset 0px 0px 65px -1px rgba(0, 0, 0, 0.75);
   border-radius: 20%;
 }
-.main p {
-  margin-left: 20px;
-}
-.containimg{
+.containimg {
   display: flex;
   align-items: flex-end;
+  position: relative;
+  right: 25px;
 }
-.containimg img{
-  display: flex;
-  width: 200px;
-  height: 200px;
-  margin: 10px;
+.containimg img {
+  width: 8vmax;
+  height: 50%;
 }
-.containtbutton{
+.containtbutton {
   margin: 10px;
   height: 30px;
   display: flex;
   position: relative;
-  left: 90px;
+  right: 18px;
 }
 .button {
-  padding: 20px;
-  border: unset;
-  border-radius: 15px;
+  display: flex;
   color: #212121;
   z-index: 1;
   background: #e8e8e8;
-  display: relative;
   font-weight: 1000;
-  font-size: 17px;
-  -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-  box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  font-size: 16px;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
   transition: all 250ms;
   align-items: center;
-  display: flex;
- }
- 
- 
- .button:hover {
+}
+.button:hover {
   color: #ccaf42;
- }
- 
- .button:hover::before {
-  width: 100%;
- }
-
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -69,3 +55,5 @@ box-shadow: inset 0px 0px 65px -1px rgba(0,0,0,0.75);
     opacity: 1;
   }
 }
+
+

@@ -121,7 +121,7 @@ const createPokemon = async (
 ) => {
   return await Pokemon.create({
     name,
-    img,
+    img: img ? img: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/132.png",
     type,
     hp,
     attack,

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { validation } from "./validation.js";
+import { getTypes } from "../../Redux/actions.js";
 
 import normal from "../../assets/icons/normal.png";
 import fighting from "../../assets/icons/fighting.png";
@@ -25,7 +26,7 @@ import unknown from "../../assets/icons/unknown.png";
 import shadow from "../../assets/icons/shadow.png";
 
 import style from "../Form/Form.module.css";
-import { getTypes } from "../../Redux/actions.js";
+
 import PokemonCreated from "../../components/PokemonCreated/PokemonCreated.jsx";
 import PokemonError from "../../components/PokemonError/PokemonError.jsx";
 
@@ -61,16 +62,29 @@ const Form = () => {
     dispatch(getTypes());
   }, []); // toda esta parte es de estados tanto para susbcripsion de estado de redux de los types como el useEffect para poder hacerles render tambien estan todo los estados locales que uso para hacer condicionles de render
 
-
+  // const handleTypeClick = (e, type) => {
+  //   e.preventDefault();
+  //   if (selectedTypes.length < 2) {
+  //     setSelectedTypes([...selectedTypes, type]);
+  //     setForm({ ...form, type: [...form.type, type] });
+  //   } else {
+  //     alert("Solo puedes seleccionar 2 tipos");
+  //   }
+  // };
   const handleTypeClick = (e, type) => {
     e.preventDefault();
     if (selectedTypes.length < 2) {
       setSelectedTypes([...selectedTypes, type]);
       setForm({ ...form, type: [...form.type, type] });
     } else {
-      alert("Solo puedes seleccionar 2 tipos");
+      let temp = selectedTypes[0];
+      selectedTypes[0] = selectedTypes[1];
+      selectedTypes[1] = type;
+      setSelectedTypes([...selectedTypes]);
+      setForm({ ...form, type: [selectedTypes[0], selectedTypes[1]] });
     }
   };
+
   const changeHandler = (event) => {
     let property = event.target.name;
     let value = event.target.value;
@@ -115,16 +129,17 @@ const Form = () => {
     unknown: unknown,
     shadow: shadow,
   }; // obj que sirve para indicar que imagen tiene que agarrar el type de pokemon
+
   return (
     <div className={style.animated}>
       {pokemonCreated && (
         <PokemonCreated setPokemonCreated={setPokemonCreated} />
       )}
-      {pokemonError && (
-        <PokemonError setPokemonError={setPokemonError}/>
-      )}
+      {pokemonError && <PokemonError setPokemonError={setPokemonError} />}
       <div
-        className={`${style.types} ${pokemonCreated || pokemonError ? `${style.filter}` : ""}`}
+        className={`${style.types} ${
+          pokemonCreated || pokemonError ? `${style.filter}` : ""
+        }`}
       >
         {types.map((type) => {
           return (
@@ -140,7 +155,9 @@ const Form = () => {
         })}
       </div>
       <form
-        className={`${style.main} ${pokemonCreated || pokemonError ? `${style.filter}` : ""}`}
+        className={`${style.main} ${
+          pokemonCreated || pokemonError ? `${style.filter}` : ""
+        }`}
         onSubmit={submitHandler}
       >
         <div className={style.form}>
@@ -239,7 +256,7 @@ const Form = () => {
             src={
               form.img
                 ? form.img
-                : "https://e00-marca.uecdn.es/assets/multimedia/imagenes/2022/06/01/16540932703790.png" //ternario que indica que si no existe form.img esta sera la imagen default del pokemon
+                : "https://assets.pokemon.com/assets/cms2/img/pokedex/full/132.png" //ternario que indica que si no existe form.img esta sera la imagen default del pokemon
             }
           ></img>
           <div className={style.info}>
@@ -250,7 +267,7 @@ const Form = () => {
             <p>Height: {form.height}</p>
             <p>Weight: {form.weight}</p>
           </div>
-        </div>   
+        </div>
       </form>
     </div>
   );

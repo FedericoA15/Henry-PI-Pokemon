@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
     },
     img: {
       type: DataTypes.STRING,
-      defaultValue: "https://images.dog.ceo/breeds/otterhound/n02091635_979.jpg",
+      defaultValue: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/132.png",
     },
     type: {
       type: DataTypes.ARRAY(DataTypes.STRING),

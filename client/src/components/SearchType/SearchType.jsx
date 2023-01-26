@@ -58,54 +58,49 @@ const SearchType = () => {
   }, []);
 
   const handleTypeSelection = (type) => {
-    if (selectedTypes.includes(type)) {
-      setSelectedTypes(selectedTypes.filter(selectedType => selectedType !== type));
-    } else if (selectedTypes.length < 2) {
-      setSelectedTypes([...selectedTypes, type]);
-    } else {
-        setSelectedTypes([selectedTypes[1], type]);
-    }
     if (!firstType) {
       setFirstType(type);
       //Si el estado firstType está vacío, significa que es la primera vez que se está seleccionando un tipo, entonces se actualiza el estado firstType con el tipo seleccionado.
     } else if (!secondType) {
       //Si el estado secondType está vacío, significa que ya se ha seleccionado un tipo y se está seleccionando un segundo tipo, entonces se actualiza el estado secondType con el tipo seleccionado.
       setSecondType(type); // agua
-    
-
     } else {
       setFirstType(secondType); // Si ambos estados firstType y secondType ya tienen un valor, significa que se está seleccionando un tercer tipo, entonces se actualiza el estado firstType con el valor actual del estado secondType y se actualiza el estado secondType con el tipo seleccionado.
       setSecondType(type); // veneno
     }
   };
-  
 
   const submitHandler = (event) => {
     event.preventDefault();
     if (!secondType) {
       dispatch(filterType(firstType));
+      setSelectedTypes([firstType]);
     } else {
       dispatch(filterTypeTwo(firstType, secondType));
+      setSelectedTypes([firstType, secondType]);
     }
   };
-
   return (
     <div>
       <form onSubmit={submitHandler} className={style.main}>
-      {types.map((type) => {
-    const selected = selectedTypes.includes(type.name);
-    return (
-        <button
-            key={type.id}
-            className={style.button}
-            value={type.name}
-            onClick={() => handleTypeSelection(type.name)}>
-            <img className={`${style.icon} ${selected ? style.selected : ""}`} src={typeIcons[type.name]}/>
-            <p>{type.name}</p>
-        </button>
-    );
-    //Dentro de la función handleTypeSelection, se están actualizando los estados firstType y secondType con los valores correspondientes, lo cual permite realizar la búsqueda con los dos tipos seleccionados.
-})}
+        {types.map((type) => {
+          const selected = selectedTypes.includes(type.name);
+          return (
+            <button
+              key={type.id}
+              className={style.button}
+              value={type.name}
+              onClick={() => handleTypeSelection(type.name)}
+            >
+              <img
+                className={`${style.icon} ${selected ? style.selected : ""}`}
+                src={typeIcons[type.name]}
+              />
+              <p>{type.name}</p>
+            </button>
+          );
+          //Dentro de la función handleTypeSelection, se están actualizando los estados firstType y secondType con los valores correspondientes, lo cual permite realizar la búsqueda con los dos tipos seleccionados.
+        })}
       </form>
     </div>
   );

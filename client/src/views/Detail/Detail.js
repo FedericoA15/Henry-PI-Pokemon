@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deletedPokemon, getPokemonId } from "../../Redux/actions";
 import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 import style from "../Detail/Detail.module.css";
 
 import normal from "../../assets/icons/normal.png";
@@ -24,12 +26,15 @@ import dark from "../../assets/icons/dark.png";
 import fairy from "../../assets/icons/fairy.png";
 import unknown from "../../assets/icons/unknown.png";
 import shadow from "../../assets/icons/shadow.png";
-
+import EditPokemon from "../../components/EditPokemon/EditPokemon";
 
 const Detail = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
+  const [edit, setEdit] = useState(false);
   const pokemon = useSelector((state) => state.pokemonDetail);
   const { id } = useParams();
+
   const typeIcons = {
     normal: normal,
     fighting: fighting,
@@ -52,11 +57,20 @@ const Detail = () => {
     unknown: unknown,
     shadow: shadow,
   };
-  const handleDelete = () =>{
-    dispatch(deletedPokemon(id))
-    alert("borraste el pokemon perfectamente")
-  }
 
+
+const handleDelete = () => {
+
+  dispatch(deletedPokemon(id));
+  alert("borraste el pokemon perfectamente");
+  history.goBack();
+
+  };
+
+
+  const activeEdit = () => {
+    setEdit(true);
+  };
 
   useEffect(() => {
     dispatch(getPokemonId(id));
@@ -69,12 +83,7 @@ const Detail = () => {
         <div className={style.nameandtype}>
           <p className={style.name}>{pokemon.name}</p>
           {pokemon.type?.map((t) => (
-            <img 
-              className={style.icon} 
-              src={typeIcons[t]} 
-              alt={t} 
-              key={t} 
-            />
+            <img className={style.icon} src={typeIcons[t]} alt={t} key={t} />
           ))}
         </div>
       </div>
@@ -90,8 +99,13 @@ const Detail = () => {
           <p> Height: {pokemon.height}</p>
         </div>
       </div>
-      {typeof pokemon.id === 'string' && <button onClick={handleDelete}>Delete</button>}
-      {typeof pokemon.id === 'string' && <button onClick={handleDelete}>Edit</button>}
+      {typeof pokemon.id === "string" && (
+        <button onClick={handleDelete}>Delete</button>
+      )}
+      {typeof pokemon.id === "string" && (
+        <button onClick={activeEdit}>Edit</button>
+      )}
+      {edit && <EditPokemon setEdit={setEdit} id={id} />}
     </div>
   );
 };
