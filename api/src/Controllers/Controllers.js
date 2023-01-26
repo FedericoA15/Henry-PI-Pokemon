@@ -124,7 +124,7 @@ const createPokemon = async (
     img: img
       ? img
       : "https://assets.pokemon.com/assets/cms2/img/pokedex/full/132.png",
-    type,
+    type: type.length ? type : ["normal"],
     hp,
     attack,
     defense,
@@ -210,8 +210,8 @@ const updatePokemon = async (
     await pokemon.update({
       name,
       img: img
-      ? img
-      : "https://assets.pokemon.com/assets/cms2/img/pokedex/full/132.png",
+        ? img
+        : "https://assets.pokemon.com/assets/cms2/img/pokedex/full/132.png",
       type,
       hp,
       attack,

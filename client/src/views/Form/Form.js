@@ -97,6 +97,7 @@ const Form = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+    console.log(form);
     axios
       .post("http://localhost:3001/pokemons", form)
       .then((res) => {
