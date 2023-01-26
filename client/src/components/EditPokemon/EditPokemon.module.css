@@ -10,6 +10,27 @@
   border-radius: 10%;
   margin-bottom: 10%;
 }
+.containtbutton {
+  margin: 10px;
+  height: 30px;
+  display: flex;
+  position: relative;
+}
+.button {
+  display: flex;
+  color: #212121;
+  z-index: 1;
+  background: #e8e8e8;
+  font-weight: 1000;
+  font-size: 16px;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+  align-items: center;
+}
+.button:hover {
+  color: #fd1500;
+}
 .animated {
   animation: fadeIn 0.5s ease-in;
 }

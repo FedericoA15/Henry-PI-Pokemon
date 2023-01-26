@@ -63,7 +63,6 @@ const Card = (props) => {
         <img src={props.img} alt={props.name} className={style.img}></img>
       </Link>
       <div className={style.info}></div>
-      <p>{props.attack}</p>
     </div>
   );
 };

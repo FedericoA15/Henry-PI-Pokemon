@@ -121,7 +121,9 @@ const createPokemon = async (
 ) => {
   return await Pokemon.create({
     name,
-    img: img ? img: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/132.png",
+    img: img
+      ? img
+      : "https://assets.pokemon.com/assets/cms2/img/pokedex/full/132.png",
     type,
     hp,
     attack,
@@ -188,13 +190,36 @@ const deletePokemon = async (id) => {
     return { error: "Pokemon not found" };
   }
 };
-const updatePokemon = async (id, name, img, type, hp, attack, defense, speed, height, weight) => {
+const updatePokemon = async (
+  id,
+  name,
+  img,
+  type,
+  hp,
+  attack,
+  defense,
+  speed,
+  height,
+  weight
+) => {
   try {
     const pokemon = await Pokemon.findByPk(id);
     if (!pokemon) {
       throw new Error("Pokemon not found");
     }
-    await pokemon.update({name, img, type, hp, attack, defense, speed, height, weight});
+    await pokemon.update({
+      name,
+      img: img
+      ? img
+      : "https://assets.pokemon.com/assets/cms2/img/pokedex/full/132.png",
+      type,
+      hp,
+      attack,
+      defense,
+      speed,
+      height,
+      weight,
+    });
     return pokemon;
   } catch (error) {
     return { error: "Pokemon not found" };

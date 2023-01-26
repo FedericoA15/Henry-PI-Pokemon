@@ -29,7 +29,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPokemonId, getTypes } from "../../Redux/actions";
 
 const EditPokemon = (props) => {
-  const { setEdit, id } = props;
+  const { setEdit, id, img } = props;
 
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [form, setForm] = useState({
@@ -123,7 +123,9 @@ const EditPokemon = (props) => {
 
   return (
     <div className={style.main}>
-      <button onClick={() => setEdit(false)}>X</button>
+      <div className={style.containtbutton}>
+        <button className={style.button} onClick={() => setEdit(false)}>X</button>
+      </div>
       <div className={style.types}>
         {types.map((type) => {
           return (
@@ -237,7 +239,7 @@ const EditPokemon = (props) => {
             src={
               form.img
                 ? form.img
-                : "https://assets.pokemon.com/assets/cms2/img/pokedex/full/132.png" //ternario que indica que si no existe form.img esta sera la imagen default del pokemon
+                : img //ternario que indica que si no existe form.img esta sera la imagen default del pokemon
             }
           ></img>
           <div className={style.info}>
