@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterType, filterTypeTwo, getTypes } from "../../Redux/actions";
 
 import style from "./SearchType.module.css";
+
 import normal from "../../assets/icons/normal.png";
 import fighting from "../../assets/icons/fighting.png";
 import flying from "../../assets/icons/flying.png";
