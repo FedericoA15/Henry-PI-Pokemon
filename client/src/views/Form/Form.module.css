@@ -1,8 +1,6 @@
 .animated{
   animation: fadeIn 0.5s ease-in;
 }
-
-
 .filter {
   filter: brightness(50%);
   animation: fadeIn 0.5s ease-in;

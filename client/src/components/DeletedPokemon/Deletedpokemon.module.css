@@ -1,0 +1,41 @@
+.main {
+    font-size: 4.5vw;
+    background-color: #fd0000;
+    display: inline-flex;
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    right: 25%;
+    top: 50%;
+    transition: 5s;
+    animation: fadeIn 0.5s ease-in;
+    z-index: 100;
+    -webkit-box-shadow: inset 0px 0px 65px -1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 0px 0px 65px -1px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0px 0px 65px -1px rgba(0, 0, 0, 0.75);
+    border-radius: 20%;
+  }
+  .button {
+    display: inline-flex;
+    position: relative;
+    right: 10px;
+    color: #212121;
+    background: #e8e8e8;
+    font-weight: 1000;
+    font-size: 16px;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    transition: all 250ms;
+  }
+  .button:hover {
+    color: #ff0000;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }

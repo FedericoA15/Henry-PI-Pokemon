@@ -32,6 +32,7 @@ const EditPokemon = (props) => {
   const { setEdit, id, img } = props;
 
   const [selectedTypes, setSelectedTypes] = useState([]);
+
   const [form, setForm] = useState({
     name: "",
     img: "",
@@ -43,6 +44,7 @@ const EditPokemon = (props) => {
     height: "",
     weight: "",
   });
+
   const [error, setError] = useState({
     name: "",
     img: "",
@@ -82,7 +84,6 @@ const EditPokemon = (props) => {
 
     if (property === "name") value = value.toLocaleLowerCase();
 
-    setError(validation(property, value));
     setForm({ ...form, [property]: value });
   };
   const submitHandler = (event) => {
