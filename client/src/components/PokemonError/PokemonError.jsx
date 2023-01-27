@@ -6,7 +6,7 @@ const PokemonError = (props) => {
 
   return (
     <div className={`${style.main} ${style.fadein}`}>
-      <p>¡Revisa tus datos hay un error!</p>
+      <p>Check your data there is an error!</p>
       <div className={style.containtbutton}>
         <button className={style.button} onClick={() => setPokemonError(false)}>X</button>
       </div>

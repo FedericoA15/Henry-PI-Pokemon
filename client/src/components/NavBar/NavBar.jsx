@@ -27,6 +27,9 @@ const NavBar = () => {
           <NavLink className={style.button} to="/types">
             Types
           </NavLink>
+          <NavLink className={style.button} to="/about">
+            About
+          </NavLink>
         </div>
       </div>
     </div>

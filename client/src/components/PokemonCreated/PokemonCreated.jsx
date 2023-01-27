@@ -7,7 +7,7 @@ const PokemonCreated = (props) => {
 
   return (
     <div className={`${style.main} ${style.fadein}`}>
-      <p>¡Pokemon Creado Correctamente!</p>
+      <p>Pokemon Created Correctly!</p>
       <div className={style.containtbutton}>
         <button className={style.button} onClick={() => setPokemonCreated(false)}>X</button>
       </div>

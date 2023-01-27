@@ -5,10 +5,10 @@ import { Home, LandingPage, Detail, Form } from "./views";
 import NavBar from "./components/NavBar/NavBar.jsx";
 import Types from "./views/Types/Types";
 import Error404 from "./views/Error404/Error404";
+import About from "./views/About/About";
 
 function App() {
   const location = useLocation();
-  const renderNavBar = location.pathname !== "*";
   return (
     <div className="App">
       {location.pathname !== "/" && <NavBar />}
@@ -27,6 +27,9 @@ function App() {
         </Route>
         <Route path="/types">
           <Types />
+        </Route>
+        <Route path="/about">
+          <About />
         </Route>
         <Route path="*">
           <Error404 />
