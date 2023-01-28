@@ -35,12 +35,10 @@ const reducer = (state = initialState, action) => {
       const filteredPokemon = state.pokemons.filter(
         (e) => e.name === action.payload
       );
-      console.log(filteredPokemon);
       return {
         ...state,
         pokemonFilter: filteredPokemon.length > 0 ? filteredPokemon : [],
       };
-
     case FILTER_TYPE:
       return {
         ...state,
