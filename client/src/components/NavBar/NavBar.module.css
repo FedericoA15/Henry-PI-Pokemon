@@ -49,4 +49,6 @@
 .navlink {
   margin-bottom: 10px;
   justify-content: end;
+  display: flex;
+  flex-wrap: wrap;
 }

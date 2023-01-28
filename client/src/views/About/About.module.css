@@ -7,15 +7,21 @@
   background-color: beige;
   border-radius: 15px;
   text-align: start;
-  margin-left: 10px;
+  margin-left: 25%;
   margin-right: 10px;
   margin-top: 10px;
   padding: 20px;
+  width: 50%;
+  justify-content: center;
+  align-self: center;
 }
 .containicon {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.icontec{
+  width: 3vh;
 }
 .icon {
   width: 20%;
@@ -23,7 +29,7 @@
 }
 .list li{
   text-decoration: none;
-  background-color: red;
+  list-style: none;
 }
 @keyframes fadeIn {
   from {
