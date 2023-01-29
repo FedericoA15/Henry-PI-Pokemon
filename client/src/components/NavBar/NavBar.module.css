@@ -1,6 +1,5 @@
 .container {
-  background-color: #fff;
-  padding: 10px;
+  background-color: white;
   box-shadow: 2px 2px 10px #b3b3b3;
   display: flex;
   flex-direction: column;
@@ -10,6 +9,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #ef3e33;
+  padding-bottom: 10px;
 }
 .contimg {
   width: 6vh;
@@ -35,7 +36,6 @@
   color: #333;
   transition: all 0.3s ease-in-out;
 }
-
 .button:hover {
   transform: translateX(10px);
   background-color: #ffcdd2;
@@ -47,6 +47,7 @@
   background-color: #ffb74d;
 }
 .navlink {
+  margin-top: 10px;
   margin-bottom: 10px;
   justify-content: flex-end;
   display: flex;

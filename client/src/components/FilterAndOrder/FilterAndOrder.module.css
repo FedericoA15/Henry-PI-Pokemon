@@ -1,3 +1,7 @@
+.container{
+  background-color: #57575a;
+  width: 100%;
+}
 .container button {
   padding: 10px 20px;
   margin: 25px;

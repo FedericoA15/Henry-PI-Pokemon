@@ -40,5 +40,5 @@
 .button:hover {
   background-color: #ff6961;
   color: #fff;
-  cursor: pointer;
+  cursor: url(../../assets/cursor/cursorpointer.png), pointer;
 }

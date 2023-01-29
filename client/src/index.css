@@ -11,6 +11,18 @@ body {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-attachment: fixed;
-  
 }
+body::-webkit-scrollbar {
+  width: 1em;
+  background-color: #414142;
+}
+body::-webkit-scrollbar-thumb {
+  background: #c73b31;
+  border-radius: 1em;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+
+
 
