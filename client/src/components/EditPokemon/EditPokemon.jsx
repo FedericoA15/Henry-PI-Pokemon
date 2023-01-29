@@ -63,7 +63,7 @@ const EditPokemon = (props) => {
 
   useEffect(() => {
     dispatch(getTypes());
-  }, []);
+  }, [dispatch]);
 
   const handleTypeClick = (e, type) => {
     e.preventDefault();
@@ -71,7 +71,6 @@ const EditPokemon = (props) => {
       setSelectedTypes([...selectedTypes, type]);
       setForm({ ...form, type: [...form.type, type] });
     } else {
-      let temp = selectedTypes[0];
       selectedTypes[0] = selectedTypes[1];
       selectedTypes[1] = type;
       setSelectedTypes([...selectedTypes]);
@@ -83,7 +82,7 @@ const EditPokemon = (props) => {
     let value = event.target.value;
 
     if (property === "name") value = value.toLocaleLowerCase();
-
+    setError(validation(property, value))
     setForm({ ...form, [property]: value });
   };
   const submitHandler = (event) => {
@@ -136,7 +135,7 @@ const EditPokemon = (props) => {
               className={style.optiones}
               value={type.name}
             >
-              <img className={style.ico} src={typeIcons[type.name]} />
+              <img className={style.ico} src={typeIcons[type.name]} alt={type.name} />
             </button>
           );
         })}
@@ -232,10 +231,11 @@ const EditPokemon = (props) => {
         <div className={style.createcard}>
           <p>Name: {form.name}</p>
           <div>
-            <img className={style.icocard} src={typeIcons[form.type[0]]} />
-            <img className={style.icocard} src={typeIcons[form.type[1]]} />
+            <img className={style.icocard} src={typeIcons[form.type[0]]} alt={form.type[0]} />
+            <img className={style.icocard} src={typeIcons[form.type[1]]} alt={form.type[1]} />
           </div>
           <img
+            alt="pokemon"
             className={style.img}
             src={
               form.img

@@ -7,14 +7,14 @@ import style from "./NavBar.module.css";
 const NavBar = () => {
   return (
     <div className={style.container}>
-      <div>
+      <div className={style.rueb}>
         <img className={style.logo} src={logo} alt="logo" />
+        <NavLink to="/">
+          <div className={style.contimg}>
+            <img src={pokebola} alt="pokebola" className={style.img} />
+          </div>
+        </NavLink>
       </div>
-      <NavLink to="/">
-        <div className={style.contimg}>
-          <img src={pokebola} alt="pokebola" className={style.img} />
-        </div>
-      </NavLink>
       <div className={style.contilink}>
         <FilterAndOrder />
         <div className={style.navlink}>

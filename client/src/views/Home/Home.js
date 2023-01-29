@@ -19,7 +19,7 @@ const Home = () => {
     setTimeout(() => {
       setLoading(false);
   }, 2000);
-  }, []);
+  }, [dispatch]);
   // ya no renderizo cardcontoiner en home sino que pagination se dedica a generar las cartass
   return (
     <div className={style.main}>

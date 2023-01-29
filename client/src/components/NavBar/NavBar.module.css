@@ -5,29 +5,29 @@
   display: flex;
   flex-direction: column;
 }
-
+.rueb{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .contimg {
-  width: 50px;
-  height: 50px;
+  width: 6vh;
+  height: 6vh;
 }
 .logo {
   width: 150px;
   position: relative;
 }
-
 .img {
   width: 100%;
-  height: 100%;
 }
-
 .contilink {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  flex: 1;
 }
-
 .button {
   padding: 10px 20px;
   margin-right: 10px;
@@ -48,7 +48,7 @@
 }
 .navlink {
   margin-bottom: 10px;
-  justify-content: end;
+  justify-content: flex-end;
   display: flex;
   flex-wrap: wrap;
 }

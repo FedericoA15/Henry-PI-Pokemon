@@ -19,6 +19,6 @@ router.post("/", validate, createPokemonHandler);
 
 router.put("/:id", updatePokemonDb);
 
-router.delete("/:id", deletePokemonHandlerDb);
+router.delete("/:id", deletePokemonHandlerDb);   // modularice mas la rutas creando solo que cuando se ejecute el tipo de request este ejecute el handler
 
 module.exports = router;

@@ -56,7 +56,7 @@ const SearchType = () => {
   };
   useEffect(() => {
     dispatch(getTypes());
-  }, []);
+  }, [dispatch]);
 
   const handleTypeSelection = (type) => {
     if (!firstType) {
@@ -96,6 +96,7 @@ const SearchType = () => {
               <img
                 className={`${style.icon} ${selected ? style.selected : ""}`}
                 src={typeIcons[type.name]}
+                alt={type.name}
               />
               <p>{type.name}</p>
             </button>

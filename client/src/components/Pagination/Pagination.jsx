@@ -33,7 +33,7 @@ const Pagination = () => {
           <div className={style.main}>
             {buttonI.map((i) => (
               <button
-                className={`${style.button} ${i == page ? style.selected : ""}`}
+                className={`${style.button} ${i === parseInt(page) ? style.selected : ""}`}
                 key={i}
                 value={i}
                 onClick={handleClick}

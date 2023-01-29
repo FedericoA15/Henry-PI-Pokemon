@@ -60,7 +60,7 @@ const Form = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTypes());
-  }, []); // toda esta parte es de estados tanto para susbcripsion de estado de redux de los types como el useEffect para poder hacerles render tambien estan todo los estados locales que uso para hacer condicionles de render
+  }, [dispatch]); // toda esta parte es de estados tanto para susbcripsion de estado de redux de los types como el useEffect para poder hacerles render tambien estan todo los estados locales que uso para hacer condicionles de render
 
   // const handleTypeClick = (e, type) => {
   //   e.preventDefault();
@@ -77,7 +77,6 @@ const Form = () => {
       setSelectedTypes([...selectedTypes, type]);
       setForm({ ...form, type: [...form.type, type] });
     } else {
-      let temp = selectedTypes[0];
       selectedTypes[0] = selectedTypes[1];
       selectedTypes[1] = type;
       setSelectedTypes([...selectedTypes]);
@@ -150,7 +149,7 @@ const Form = () => {
               className={style.optiones}
               value={type.name}
             >
-              <img className={style.ico} src={typeIcons[type.name]} />
+              <img  className={style.ico} src={typeIcons[type.name]} alt={type.name} />
             </button>
           );
         })}
@@ -249,10 +248,11 @@ const Form = () => {
         <div className={style.createcard}>
           <p>Name: {form.name}</p>
           <div>
-            <img className={style.icocard} src={typeIcons[form.type[0]]} />
-            <img className={style.icocard} src={typeIcons[form.type[1]]} />
+            <img className={style.icocard} src={typeIcons[form.type[0]]} alt={form.type[0]} />
+            <img className={style.icocard} src={typeIcons[form.type[1]]} alt={form.type[1]} />
           </div>
           <img
+            alt="pokemon"
             className={style.img}
             src={
               form.img

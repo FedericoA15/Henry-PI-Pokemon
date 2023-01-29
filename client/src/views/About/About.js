@@ -14,14 +14,14 @@ const About = () => {
         con varias tecnologias usadas de las mas importantes son:
       </p>
       <ul className={style.list}>
-        <li>React <img className={style.icontec} src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png"/></li>
-        <li>Redux <img className={style.icontec} src="https://raw.githubusercontent.com/reduxjs/redux/master/logo/logo.png"/></li>
-        <li>Express <img className={style.icontec} src="https://w7.pngwing.com/pngs/925/447/png-transparent-express-js-node-js-javascript-mongodb-node-js-text-trademark-logo.png"/></li>
-        <li>Sequelize <img className={style.icontec} src="https://cdn.iconscout.com/icon/free/png-256/sequelize-2-1175003.png"/></li>
-        <li>Postgres <img className={style.icontec} src="https://user-images.githubusercontent.com/24623425/36042969-f87531d4-0d8a-11e8-9dee-e87ab8c6a9e3.png"/></li>
-        <li>JavaScrip <img className={style.icontec} src="https://cdn.iconscout.com/icon/free/png-256/javascript-2038874-1720087.png"/></li>
-        <li>Css <img className={style.icontec} src="https://cdn-icons-png.flaticon.com/512/5968/5968242.png"/></li>
-        <li>Html <img className={style.icontec} src="https://cdn-icons-png.flaticon.com/512/888/888859.png"/></li>
+        <li>React <img className={style.icontec} src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png" alt="React"/></li>
+        <li>Redux <img className={style.icontec} src="https://raw.githubusercontent.com/reduxjs/redux/master/logo/logo.png" alt="Redux"/></li>
+        <li>Express <img className={style.icontec} src="https://w7.pngwing.com/pngs/925/447/png-transparent-express-js-node-js-javascript-mongodb-node-js-text-trademark-logo.png" alt="Express"/></li>
+        <li>Sequelize <img className={style.icontec} src="https://cdn.iconscout.com/icon/free/png-256/sequelize-2-1175003.png" alt="Sequelize"/></li>
+        <li>Postgres <img className={style.icontec} src="https://user-images.githubusercontent.com/24623425/36042969-f87531d4-0d8a-11e8-9dee-e87ab8c6a9e3.png" alt="Postgres"/></li>
+        <li>JavaScrip <img className={style.icontec} src="https://cdn.iconscout.com/icon/free/png-256/javascript-2038874-1720087.png" alt="JavaScrip"/></li>
+        <li>Css <img className={style.icontec} src="https://cdn-icons-png.flaticon.com/512/5968/5968242.png" alt="Css"/></li>
+        <li>Html <img className={style.icontec} src="https://cdn-icons-png.flaticon.com/512/888/888859.png" alt="Html"/></li>
       </ul>
       <p>
         Un brebe resumen de este proyecoto seria que se basa en la la

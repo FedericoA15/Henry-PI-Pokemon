@@ -6,7 +6,7 @@ import landing from "../../assets/Landing.png";
 const Landing = () => {
   return (
     <div className={style.main}>
-      <img className={style.image} src={landing}></img>
+      <img className={style.image} src={landing} alt={landing}></img>
       <div className={`${style.boton}`}>
         <Link to="/home" className={`${style.unstyle} ${style.blink}`}>
           Go!

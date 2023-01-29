@@ -69,7 +69,7 @@ const Detail = () => {
 
   useEffect(() => {
     dispatch(getPokemonId(id));
-  }, []);
+  }, [dispatch,id]);
 
   return (
     <div className={style.mainimage}>

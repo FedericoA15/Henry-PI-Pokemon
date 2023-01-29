@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import TypesInfo from "../../components/TypesInfo/TypesInfo";
 
 const Types = () => {
