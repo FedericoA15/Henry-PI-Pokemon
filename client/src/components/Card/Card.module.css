@@ -32,6 +32,7 @@
 }
 .img:hover {
   transform: scale(1.2);
+  cursor: url(../../assets/cursor/cursorpointer.png), pointer;
 }
 .icon{
   padding-top: 20px;

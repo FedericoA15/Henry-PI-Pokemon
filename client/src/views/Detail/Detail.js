@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deletedPokemon, getPokemonId } from "../../Redux/actions";
 import { useParams } from "react-router-dom";
@@ -27,10 +27,12 @@ import unknown from "../../assets/icons/unknown.png";
 import shadow from "../../assets/icons/shadow.png";
 import EditPokemon from "../../components/EditPokemon/EditPokemon";
 import Deletedpokemon from "../../components/DeletedPokemon/Deletedpokemon";
+import Loader from "../Loader/Loader";
 
 const Detail = () => {
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [clean, setClean] = useState(false);
   const pokemon = useSelector((state) => state.pokemonDetail);
   const { id } = useParams();
@@ -68,11 +70,20 @@ const Detail = () => {
   };
 
   useEffect(() => {
-    dispatch(getPokemonId(id));
-  }, [dispatch,id]);
+    const getData = async () => {
+      setLoading(true);
+      await dispatch(getPokemonId(id));
+      setLoading(false);
+    };
+    getData();
+  }, [dispatch, id]);
 
   return (
-    <div className={style.mainimage}>
+    <div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className={style.mainimage}>
         <div>
           <img
             className={style.image}
@@ -130,6 +141,8 @@ const Detail = () => {
         </div>
       {clean && <Deletedpokemon setClean={setClean} />}
       {edit && <EditPokemon setEdit={setEdit} id={id} img={pokemon.img} />}
+    </div>
+      )}
     </div>
   );
 };

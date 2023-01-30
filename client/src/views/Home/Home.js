@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getPokemons } from "../../Redux/actions";
 
@@ -13,13 +13,20 @@ const Home = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
 
+  // useEffect( async () => {
+  //   setLoading(true);
+  //   await dispatch(getPokemons());
+  //   setLoading(false)
+  // }, [dispatch]);
   useEffect(() => {
-    setLoading(true);
-    dispatch(getPokemons());
-    setTimeout(() => {
+    const getData = async () => {
+      setLoading(true);
+      await dispatch(getPokemons());
       setLoading(false);
-  }, 2000);
+    };
+    getData();
   }, [dispatch]);
+  
   // ya no renderizo cardcontoiner en home sino que pagination se dedica a generar las cartass
   return (
     <div className={style.main}>
