@@ -56,12 +56,12 @@ const reducer = (state = initialState, action) => {
     case FILTER_DB:
       return {
         ...state,
-        pokemonFilter: state.pokemons.filter((p) => p.id.length > 16),
+        pokemonFilter: state.pokemons.filter((p) => typeof p.id === "string"),
       };
     case FILTER_API:
       return {
         ...state,
-        pokemonFilter: state.pokemons.filter((p) => p.id.toString().length < 4),
+        pokemonFilter: state.pokemons.filter((p) => typeof p.id === "number"),
       };
     case ORDER_BY_ATTACK:
       // if (action.payload === "asc") {
