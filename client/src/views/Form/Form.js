@@ -96,6 +96,9 @@ const Form = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+    if(!form.type.length){
+      form.type.push("normal")
+    }
     console.log(form);
     axios
       .post("http://localhost:3001/pokemons", form)
